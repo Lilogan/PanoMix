@@ -5,7 +5,9 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "cocktail_table")
 data class Cocktail(
-    @PrimaryKey(autoGenerate = true) var id: Int,
-    var name: String,
-    var img: String,
-)
+    var name: String?,
+    var img: String? = null,
+) {
+    @PrimaryKey(autoGenerate = true)
+    var id: Int? = null
+}

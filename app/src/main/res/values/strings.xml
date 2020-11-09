@@ -5,7 +5,17 @@
     <string name="bottom_navigation_menu_storage">Storage</string>
     <string name="bottom_navigation_menu_home">Home</string>
     <string name="bottom_navigation_menu_bar">Bar</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Placeholder -->
+    <string name="placeholder_ingredient_name">Water</string>
+    <string name="placeholder_ingredient_quantity">10</string>
+    <string name="placeholder_ingredient_unit">ml</string>
+
+    <!-- Description -->
+    <string name="description_ingredient_img">Ingredient image</string>
+    <string name="description_ingredient_name">Ingredient name</string>
+    <string name="description_ingredient_quantity">Ingredient quantity</string>
+    <string name="description_ingredient_unit">Ingredient unit</string>
+
 
 </resources>

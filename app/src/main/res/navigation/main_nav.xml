@@ -7,17 +7,17 @@
 
     <fragment
         android:id="@+id/barFragment"
-        android:name="fr.isen.panomix.fragment.BarFragment"
+        android:name="fr.isen.panomix.ui.bar.BarFragment"
         android:label="fragment_bar"
         tools:layout="@layout/fragment_bar" />
     <fragment
         android:id="@+id/homeFragment"
-        android:name="fr.isen.panomix.fragment.HomeFragment"
+        android:name="fr.isen.panomix.ui.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/storageFragment"
-        android:name="fr.isen.panomix.fragment.StorageFragment"
+        android:name="fr.isen.panomix.ui.storage.StorageFragment"
         android:label="fragment_storage"
         tools:layout="@layout/fragment_storage" />
 </navigation>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardIngredient"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/card_spacing"
+    android:layout_marginTop="@dimen/card_spacing"
+    android:layout_marginEnd="@dimen/card_spacing"
+    app:cardBackgroundColor="@color/colorAccentDark"
+    app:cardCornerRadius="@dimen/card_corner"
+    app:contentPadding="@dimen/card_padding"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/ingredientImageView"
+            android:layout_width="@dimen/ingredient_icon_size"
+            android:layout_height="@dimen/ingredient_icon_size"
+            android:contentDescription="@string/description_ingredient_img"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_bar"
+            tools:srcCompat="@drawable/ic_bar" />
+
+        <TextView
+            android:id="@+id/ingredientNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/ingredient_spacing"
+            android:contentDescription="@string/description_ingredient_name"
+            android:text="@string/placeholder_ingredient_name"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ingredientImageView"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/placeholder_ingredient_name" />
+
+        <TextView
+            android:id="@+id/ingredientUnitTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/description_ingredient_unit"
+            android:text="@string/placeholder_ingredient_unit"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/placeholder_ingredient_unit" />
+
+        <TextView
+            android:id="@+id/ingredientQuantityTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/description_ingredient_quantity"
+            android:text="@string/placeholder_ingredient_quantity"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/ingredientUnitTextView"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/placeholder_ingredient_quantity" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

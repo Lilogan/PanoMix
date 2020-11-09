@@ -1,9 +1,8 @@
 package fr.isen.panomix.api
 
-import retrofit2.Call;
-import retrofit2.http.GET;
-
 import fr.isen.panomix.model.IngredientsAPI
+import retrofit2.Call
+import retrofit2.http.GET
 
 interface IngredientsApiCall {
     @GET("list.php?i=list")
