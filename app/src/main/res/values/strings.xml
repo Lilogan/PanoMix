@@ -6,6 +6,16 @@
     <string name="bottom_navigation_menu_home">Home</string>
     <string name="bottom_navigation_menu_bar">Bar</string>
 
+    <!-- New Ingredient -->
+    <string name="new_ingredient_name">Name</string>
+    <string name="new_ingredient_quantity">Quantity</string>
+    <string name="new_ingredient_unit">Unit</string>
+    <string name="new_ingredient_unit_liquid">ml</string>
+    <string name="new_ingredient_unit_solid">g</string>
+    <string name="new_ingredient_unit_one">u</string>
+    <string name="new_ingredient_submit">Add the ingredient</string>
+
+
     <!-- Placeholder -->
     <string name="placeholder_ingredient_name">Water</string>
     <string name="placeholder_ingredient_quantity">10</string>
@@ -16,6 +26,8 @@
     <string name="description_ingredient_name">Ingredient name</string>
     <string name="description_ingredient_quantity">Ingredient quantity</string>
     <string name="description_ingredient_unit">Ingredient unit</string>
+    <string name="description_adding_ingredient">Adding new ingredient</string>
+    <string name="description_new_ingredient_img">New ingredient image</string>
 
 
 </resources>

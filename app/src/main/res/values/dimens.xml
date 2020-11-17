@@ -8,4 +8,12 @@
     <dimen name="ingredient_icon_size">50dp</dimen>
     <dimen name="ingredient_spacing">12dp</dimen>
 
+    <dimen name="add_button_spacing">24dp</dimen>
+
+    <!-- Add new ingredient -->
+    <dimen name="new_ingredient_icon_size">100dp</dimen>
+    <dimen name="new_ingredient_spacing">48dp</dimen>
+    <dimen name="new_ingredient_padding">24dp</dimen>
+
+
 </resources>

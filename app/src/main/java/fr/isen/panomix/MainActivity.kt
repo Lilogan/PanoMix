@@ -1,10 +1,15 @@
 package fr.isen.panomix
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import fr.isen.panomix.ui.storage.StorageViewModel
+import fr.isen.panomix.ui.storage.StorageViewModelFactory
 
 class MainActivity : AppCompatActivity() {
 

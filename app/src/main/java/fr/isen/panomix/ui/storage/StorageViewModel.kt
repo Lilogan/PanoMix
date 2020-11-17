@@ -1,25 +1,32 @@
 package fr.isen.panomix.ui.storage
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
+
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import fr.isen.panomix.database.PanomixDatabase
 import fr.isen.panomix.model.Ingredient
 import fr.isen.panomix.repository.PanomixRepository
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.lang.IllegalArgumentException
 
-class StorageViewModel(application: Application) : AndroidViewModel(application) {
+class StorageViewModel(private val repository: PanomixRepository) : ViewModel() {
 
-    private val panomixDao =
-        PanomixDatabase.getDatabase(application.applicationContext, viewModelScope).panomixDao()
-    private val repository = PanomixRepository(panomixDao)
-    val availableIngredients = repository.availableIngredients
+    val availableIngredients = repository.availableIngredients.asLiveData()
 
-
-    fun addIngredient(ingredient: Ingredient) = viewModelScope.launch(Dispatchers.IO) {
+    fun addIngredient(ingredient: Ingredient) = viewModelScope.launch() {
         repository.addIngredient(ingredient)
     }
 
+}
 
+class StorageViewModelFactory(private val repository: PanomixRepository) :
+    ViewModelProvider.Factory {
+    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(StorageViewModel::class.java)) {
+            @Suppress("UNCHECKED_CAST")
+            return StorageViewModel(repository) as T
+        }
+        throw IllegalArgumentException("Unknow ViewModel class")
+    }
 }

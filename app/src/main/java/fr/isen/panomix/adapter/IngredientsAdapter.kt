@@ -9,34 +9,40 @@ import androidx.recyclerview.widget.RecyclerView
 import fr.isen.panomix.R
 import fr.isen.panomix.model.Ingredient
 
-class IngredientsAdapter(context: Context) :
-    RecyclerView.Adapter<IngredientsAdapter.IngredientViewHolder>() {
-
-    private val inflater: LayoutInflater = LayoutInflater.from(context)
-    private var ingredients = emptyList<Ingredient>()
-
-    inner class IngredientViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var itemName: TextView = itemView.findViewById(R.id.ingredientNameTextView)
-        var itemUnit: TextView = itemView.findViewById(R.id.ingredientUnitTextView)
-        var itemQuantity: TextView = itemView.findViewById(R.id.ingredientQuantityTextView)
-    }
+class IngredientsAdapter() : BaseRecyclerViewAdapter<Ingredient>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IngredientViewHolder {
-        val itemView = inflater.inflate(R.layout.card_ingredient, parent, false)
+        val itemView =
+            LayoutInflater.from(parent.context).inflate(R.layout.card_ingredient, parent, false)
         return IngredientViewHolder(itemView)
     }
 
-    override fun onBindViewHolder(holder: IngredientViewHolder, position: Int) {
-        holder.itemName.text = ingredients[position].name
-        holder.itemUnit.text = ingredients[position].unit
-        holder.itemQuantity.text = ingredients[position].quantity.toString()
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        val viewHolder = holder as? IngredientViewHolder
+        viewHolder?.setUpIngredient(ingredient = getItem(position))
+
     }
 
-    internal fun setIngredients(ingredients: List<Ingredient>) {
-        this.ingredients = ingredients
-        notifyDataSetChanged()
-    }
+    inner class IngredientViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
+        View.OnClickListener {
+        private var itemName: TextView = itemView.findViewById(R.id.ingredientNameTextView)
+        private var itemUnit: TextView = itemView.findViewById(R.id.ingredientUnitTextView)
+        private var itemQuantity: TextView = itemView.findViewById(R.id.ingredientQuantityTextView)
 
-    override fun getItemCount() = ingredients.size
+        init {
+            itemView.setOnClickListener(this)
+        }
+
+        fun setUpIngredient(ingredient: Ingredient?) {
+            itemName.text = ingredient?.name
+            itemQuantity.text = ingredient?.quantity.toString()
+            itemUnit.text = ingredient?.unit
+        }
+
+        override fun onClick(v: View?) {
+            itemClickListener?.onItemClick(adapterPosition, v)
+        }
+    }
 
 }
+
