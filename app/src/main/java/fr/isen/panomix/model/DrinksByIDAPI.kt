@@ -1,10 +1,8 @@
 package fr.isen.panomix.model
 
-class DrinksByIDAPI {
-    var strDrink: String? = null
-    var strAlcoholic: String? = null
-    var strGlass: String? = null
-    var strInstructions: String? = null
-    var strIngredients: List<String>? = null
-    var strMeasures: List<String>? = null
-}
+import com.google.gson.annotations.SerializedName
+
+class DrinksByIDAPI (
+    @SerializedName("drinks")
+    val drinks: List<DrinksByIDFromApi>
+)

@@ -1,5 +1,9 @@
 package fr.isen.panomix.model
 
+import fr.isen.panomix.model.IngredientFromAPI
+import com.google.gson.annotations.SerializedName
+
 class IngredientsAPI {
-    var strIngredients: List<String>? = null
+    @SerializedName("drinks")
+    val strIngredients: List<IngredientFromAPI>? = ArrayList()
 }

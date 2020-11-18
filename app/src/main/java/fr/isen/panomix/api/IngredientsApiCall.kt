@@ -6,5 +6,5 @@ import retrofit2.http.GET
 
 interface IngredientsApiCall {
     @GET("list.php?i=list")
-    fun getIngredients(): Call<List<IngredientsAPI>>
+    fun getIngredients(): Call<IngredientsAPI>
 }

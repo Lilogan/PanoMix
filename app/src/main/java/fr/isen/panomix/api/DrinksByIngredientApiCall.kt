@@ -7,5 +7,5 @@ import retrofit2.http.Query
 
 interface DrinksByIngredientApiCall {
     @GET("filter.php")
-    fun getDrinksByIngredient(@Query("i") ingredient: String): Call<List<DrinksByIngredientAPI>>
+    fun getDrinksByIngredient(@Query("i") ingredient: String): Call<DrinksByIngredientAPI>
 }
