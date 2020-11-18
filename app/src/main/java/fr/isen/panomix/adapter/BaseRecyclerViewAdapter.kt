@@ -1,8 +1,8 @@
 package fr.isen.panomix.adapter
 
-import android.widget.AdapterView
 import androidx.recyclerview.widget.RecyclerView
 import fr.isen.panomix.`interface`.OnItemClickListener
+import fr.isen.panomix.model.Ingredient
 
 abstract class BaseRecyclerViewAdapter<T> : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 

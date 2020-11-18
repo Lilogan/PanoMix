@@ -28,4 +28,7 @@ interface PanomixDao {
     @Query("DELETE FROM ingredient_table")
     suspend fun deleteAllIngredient()
 
+    @Query("DELETE FROM cocktail_table")
+    suspend fun deleteAllCocktails()
+
 }

@@ -9,13 +9,13 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import fr.isen.panomix.NewIngredientActivity
 import fr.isen.panomix.PanomixApplication
 import fr.isen.panomix.R
-import fr.isen.panomix.`interface`.OnItemClickListener
 import fr.isen.panomix.adapter.IngredientsAdapter
 import fr.isen.panomix.model.Ingredient
 

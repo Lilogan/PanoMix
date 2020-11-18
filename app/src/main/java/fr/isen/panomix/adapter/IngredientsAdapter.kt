@@ -20,7 +20,6 @@ class IngredientsAdapter() : BaseRecyclerViewAdapter<Ingredient>() {
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val viewHolder = holder as? IngredientViewHolder
         viewHolder?.setUpIngredient(ingredient = getItem(position))
-
     }
 
     inner class IngredientViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
