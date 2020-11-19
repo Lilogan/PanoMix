@@ -10,7 +10,7 @@ interface PanomixDao {
     @Query("SELECT * FROM ingredient_table")
     fun getAllIngredients(): Flow<List<Ingredient>>
 
-    @Query("SELECT * FROM ingredient_table WHERE quantity > 0")
+    @Query("SELECT * FROM ingredient_table WHERE available")
     fun getAvailableIngredients(): Flow<List<Ingredient>>
 
     @Query("SELECT * FROM cocktail_table")

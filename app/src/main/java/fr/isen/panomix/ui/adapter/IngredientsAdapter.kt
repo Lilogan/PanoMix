@@ -51,8 +51,6 @@ class IngredientsAdapter() : BaseRecyclerViewAdapter<Ingredient>() {
 
         fun setUpIngredient(ingredient: Ingredient?) {
             itemName.text = ingredient?.name
-            itemQuantity.text = ingredient?.quantity.toString()
-            itemUnit.text = ingredient?.unit
         }
 
         override fun onClick(v: View?) {

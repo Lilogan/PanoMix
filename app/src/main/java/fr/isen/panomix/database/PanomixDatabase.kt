@@ -51,11 +51,11 @@ abstract class PanomixDatabase : RoomDatabase() {
 
 suspend fun populateIngredients(dao: PanomixDao) {
     dao.deleteAllIngredient()
-    dao.addIngredient(Ingredient("Water", "L", 2.0))
-    dao.addIngredient(Ingredient("Wine", "cl", 50.0))
-    dao.addIngredient(Ingredient("Soda", "L", 5.0))
-    dao.addIngredient(Ingredient("Vodka", "cl", 30.0))
-    dao.addIngredient(Ingredient("Rhum", "cl", 40.0))
+    dao.addIngredient(Ingredient("Water"))
+    dao.addIngredient(Ingredient("Wine"))
+    dao.addIngredient(Ingredient("Soda"))
+    dao.addIngredient(Ingredient("Vodka"))
+    dao.addIngredient(Ingredient("Rhum"))
 }
 
 suspend fun populateCocktails(dao: PanomixDao) {

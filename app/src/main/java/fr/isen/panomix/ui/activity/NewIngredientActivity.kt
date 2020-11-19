@@ -26,14 +26,11 @@ class NewIngredientActivity : AppCompatActivity() {
         val button = findViewById<Button>(R.id.submitNewIngredientButton)
         button.setOnClickListener {
             val replyIntent = Intent()
-            if (TextUtils.isEmpty(editName.text) || TextUtils.isEmpty(editQuantity.text) || unitRadioGroup.checkedRadioButtonId == -1) {
+            if (TextUtils.isEmpty(editName.text)) {
                 setResult(Activity.RESULT_CANCELED, replyIntent)
             } else {
                 val name = editName.text.toString()
-                val quantity = editQuantity.text.toString().toDouble()
-                val unit =
-                    findViewById<RadioButton>(unitRadioGroup.checkedRadioButtonId).text.toString()
-                replyIntent.putExtra("new_ingredient", Ingredient(name, unit, quantity))
+                replyIntent.putExtra("new_ingredient", Ingredient(name))
                 setResult(Activity.RESULT_OK, replyIntent)
             }
             finish()
