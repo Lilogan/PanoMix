@@ -1,9 +1,6 @@
 package fr.isen.panomix.database
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import fr.isen.panomix.model.Cocktail
 import fr.isen.panomix.model.Ingredient
 import kotlinx.coroutines.flow.Flow
@@ -31,5 +28,10 @@ interface PanomixDao {
     @Query("DELETE FROM cocktail_table")
     suspend fun deleteAllCocktails()
 
+    @Update
+    fun updateItem(ingredient : Ingredient)
+
+    @Delete
+    fun deleteOneIngredient(ingredient: Ingredient)
 
 }
