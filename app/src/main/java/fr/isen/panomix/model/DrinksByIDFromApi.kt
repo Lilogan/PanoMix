@@ -15,6 +15,9 @@ class DrinksByIDFromApi (
     @SerializedName("strInstructions")
     val strInstructions: String? = null,
 
+    @SerializedName("strDrinkThumb")
+    val img: String?,
+
     @SerializedName("strIngredient1")
     val strIngredient1: String?,
 
