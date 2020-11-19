@@ -24,4 +24,9 @@ class PanomixRepository(private val panomixDao: PanomixDao) {
     suspend fun addIngredient(ingredient: Ingredient) {
         panomixDao.addIngredient(ingredient)
     }
+
+    @WorkerThread
+    suspend fun deleteOneIngredient(ingredient : Ingredient){
+        panomixDao.deleteOneIngredient(ingredient)
+    }
 }
