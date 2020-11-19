@@ -6,6 +6,10 @@
     <string name="bottom_navigation_menu_home">Home</string>
     <string name="bottom_navigation_menu_bar">Bar</string>
 
+    <!-- Header -->
+    <string name="header_storage">List of ingredient</string>
+    <string name="header_bar">List of cocktail</string>
+
     <!-- New Ingredient -->
     <string name="new_ingredient_name">Name</string>
     <string name="new_ingredient_quantity">Quantity</string>
@@ -15,19 +19,20 @@
     <string name="new_ingredient_unit_one">u</string>
     <string name="new_ingredient_submit">Add the ingredient</string>
 
-
     <!-- Placeholder -->
-    <string name="placeholder_ingredient_name">Water</string>
-    <string name="placeholder_ingredient_quantity">10</string>
-    <string name="placeholder_ingredient_unit">ml</string>
+    <string name="placeholder_cocktail_name">Cocktail</string>
+    <string name="placeholder_ingredient_name">Ingredient</string>
+    <string name="placeholder_ingredient_quantity">1</string>
+    <string name="placeholder_ingredient_unit">u</string>
 
     <!-- Description -->
+    <string name="description_cocktail_img">Cocktail image</string>
+    <string name="description_cocktail_name">Cocktail mane</string>
     <string name="description_ingredient_img">Ingredient image</string>
     <string name="description_ingredient_name">Ingredient name</string>
     <string name="description_ingredient_quantity">Ingredient quantity</string>
     <string name="description_ingredient_unit">Ingredient unit</string>
     <string name="description_adding_ingredient">Adding new ingredient</string>
     <string name="description_new_ingredient_img">New ingredient image</string>
-
 
 </resources>

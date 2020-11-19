@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Card Ingredient -->
+
+    <!-- Cards -->
     <dimen name="card_spacing">8dp</dimen>
     <dimen name="card_padding">12dp</dimen>
     <dimen name="card_corner">8dp</dimen>
+
+    <!-- Ingredient -->
     <dimen name="ingredient_icon_size">50dp</dimen>
     <dimen name="ingredient_spacing">12dp</dimen>
 
+    <!-- Cocktail -->
+    <dimen name="cocktail_icon_size">70dp</dimen>
+
+    <!-- Floating button -->
     <dimen name="add_button_spacing">24dp</dimen>
 
-    <!-- Add new ingredient -->
+    <!-- New ingredient -->
     <dimen name="new_ingredient_icon_size">100dp</dimen>
     <dimen name="new_ingredient_spacing">48dp</dimen>
     <dimen name="new_ingredient_padding">24dp</dimen>

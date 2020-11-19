@@ -1,8 +1,8 @@
 package fr.isen.panomix.database
 
 import androidx.room.*
-import fr.isen.panomix.model.Cocktail
-import fr.isen.panomix.model.Ingredient
+import fr.isen.panomix.data.model.Cocktail
+import fr.isen.panomix.data.model.Ingredient
 import kotlinx.coroutines.flow.Flow
 
 @Dao

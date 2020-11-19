@@ -5,18 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_gray"
-    tools:context=".ui.storage.StorageFragment">
+    tools:context=".ui.fragment.StorageFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/storage_recycler_view"
+            android:id="@+id/storageRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:layout_editor_absoluteX="-68dp"
-            tools:layout_editor_absoluteY="28dp" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/addNewIngredientButton"
@@ -28,7 +30,7 @@
             android:contentDescription="@string/description_adding_ingredient"
             android:focusable="true"
             android:src="@drawable/ic_add"
-            app:layout_constraintBottom_toBottomOf="@+id/storage_recycler_view"
+            app:layout_constraintBottom_toBottomOf="@+id/storageRecyclerView"
             app:layout_constraintEnd_toEndOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

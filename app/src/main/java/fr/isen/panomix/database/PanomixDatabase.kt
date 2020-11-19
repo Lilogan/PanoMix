@@ -5,9 +5,9 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
-import fr.isen.panomix.model.Cocktail
-import fr.isen.panomix.model.Ingredient
-import fr.isen.panomix.model.IngredientInCocktail
+import fr.isen.panomix.data.model.Cocktail
+import fr.isen.panomix.data.model.Ingredient
+import fr.isen.panomix.data.model.IngredientInCocktail
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 

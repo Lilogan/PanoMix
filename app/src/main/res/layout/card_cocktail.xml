@@ -2,6 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardCocktail"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="@dimen/card_spacing"
@@ -19,26 +20,24 @@
             android:id="@+id/cocktailTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="100dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginBottom="2dp"
+            android:contentDescription="@string/description_cocktail_name"
             android:fontFamily="sans-serif"
-            android:text="Nom du cocktail"
+            android:text="@string/placeholder_cocktail_name"
             android:textColorLink="#FFFFFF"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/cocktailImageView"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/cocktailImageView"
-            android:layout_width="@dimen/new_ingredient_icon_size"
-            android:layout_height="74dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="10dp"
+            android:layout_width="@dimen/cocktail_icon_size"
+            android:layout_height="@dimen/cocktail_icon_size"
+            android:contentDescription="@string/description_cocktail_img"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@android:drawable/btn_star_big_on" />
+            app:srcCompat="@drawable/ic_bar" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
