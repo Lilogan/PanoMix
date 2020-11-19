@@ -7,7 +7,6 @@ import java.io.Serializable
 @Entity(tableName = "ingredient_table")
 data class Ingredient(
     var name: String?,
-    var unit: String?,
     var available: Boolean? = false,
     var img: String? = null,
 ) : Serializable {
