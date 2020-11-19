@@ -124,36 +124,38 @@ class SplashActivity : AppCompatActivity() {
                             response.body()?.drinks?.get(x)?.let { allDrinksByID.add(it) }
                         }
 
-                        for (element in allDrinksByID){
-                            val currentCocktail = Cocktail(element.drinkName, element.img, element.strInstructions)
+                        for (element in allDrinksByID) {
+                            val currentCocktail =
+                                Cocktail(element.drinkName, element.img, element.strInstructions)
                             viewModel.addCocktail(currentCocktail)
                         }
-                        for (element in allDrinksByID){
-                            val cocktailID = element.drinkName?.let { viewModel.getCocktailByName(it) }
+                        for (element in allDrinksByID) {
+                            val cocktailID =
+                                element.drinkName?.let { viewModel.getCocktailByName(it).value }
                             val ingredient1ID = element.strIngredient1?.let {
                                 viewModel.getIngredientByName(
                                     it
-                                )
+                                ).value
                             }
                             val ingredient2ID = element.strIngredient2?.let {
                                 viewModel.getIngredientByName(
                                     it
-                                )
+                                ).value
                             }
                             val ingredient3ID = element.strIngredient3?.let {
                                 viewModel.getIngredientByName(
                                     it
-                                )
+                                ).value
                             }
                             val ingredient4ID = element.strIngredient4?.let {
                                 viewModel.getIngredientByName(
                                     it
-                                )
+                                ).value
                             }
                             val ingredient5ID = element.strIngredient5?.let {
                                 viewModel.getIngredientByName(
                                     it
-                                )
+                                ).value
                             }
 
                             val ingredient1Q = element.strQuantity1
@@ -162,28 +164,48 @@ class SplashActivity : AppCompatActivity() {
                             val ingredient4Q = element.strQuantity4
                             val ingredient5Q = element.strQuantity5
 
-                            if(element.strIngredient1 != null){
-                                val linkIngredientCocktail = IngredientInCocktail(cocktailID?.id, ingredient1ID?.id, ingredient1Q)
+                            if (element.strIngredient1 != null) {
+                                val linkIngredientCocktail = IngredientInCocktail(
+                                    cocktailID?.id,
+                                    ingredient1ID?.id,
+                                    ingredient1Q
+                                )
                                 viewModel.addIngredientInCocktail(linkIngredientCocktail)
                             }
 
-                            if(element.strIngredient2 != null){
-                                val linkIngredientCocktail = IngredientInCocktail(cocktailID?.id, ingredient2ID?.id, ingredient2Q)
+                            if (element.strIngredient2 != null) {
+                                val linkIngredientCocktail = IngredientInCocktail(
+                                    cocktailID?.id,
+                                    ingredient2ID?.id,
+                                    ingredient2Q
+                                )
                                 viewModel.addIngredientInCocktail(linkIngredientCocktail)
                             }
 
-                            if(element.strIngredient3 != null){
-                                val linkIngredientCocktail = IngredientInCocktail(cocktailID?.id, ingredient3ID?.id, ingredient3Q)
+                            if (element.strIngredient3 != null) {
+                                val linkIngredientCocktail = IngredientInCocktail(
+                                    cocktailID?.id,
+                                    ingredient3ID?.id,
+                                    ingredient3Q
+                                )
                                 viewModel.addIngredientInCocktail(linkIngredientCocktail)
                             }
 
-                            if(element.strIngredient4 != null){
-                                val linkIngredientCocktail = IngredientInCocktail(cocktailID?.id, ingredient4ID?.id, ingredient4Q)
+                            if (element.strIngredient4 != null) {
+                                val linkIngredientCocktail = IngredientInCocktail(
+                                    cocktailID?.id,
+                                    ingredient4ID?.id,
+                                    ingredient4Q
+                                )
                                 viewModel.addIngredientInCocktail(linkIngredientCocktail)
                             }
 
-                            if(element.strIngredient5 != null){
-                                val linkIngredientCocktail = IngredientInCocktail(cocktailID?.id, ingredient5ID?.id, ingredient5Q)
+                            if (element.strIngredient5 != null) {
+                                val linkIngredientCocktail = IngredientInCocktail(
+                                    cocktailID?.id,
+                                    ingredient5ID?.id,
+                                    ingredient5Q
+                                )
                                 viewModel.addIngredientInCocktail(linkIngredientCocktail)
                             }
 
@@ -203,8 +225,7 @@ class SplashActivity : AppCompatActivity() {
     private fun sheduleTest() {
         val testDuration = 2000L
         Handler().postDelayed({
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
+
         }, testDuration)
     }
 }

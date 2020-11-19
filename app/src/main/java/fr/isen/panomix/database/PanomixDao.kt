@@ -17,11 +17,11 @@ interface PanomixDao {
     @Query("SELECT * FROM cocktail_table")
     fun getAllCocktails(): Flow<List<Cocktail>>
 
-    @Query("SELECT * FROM cocktail_table WHERE name = :name")
-    fun getCocktailByName(name: String): Cocktail
+    @Query("SELECT * FROM cocktail_table WHERE name = :name LIMIT 1")
+    fun getCocktailByName(name: String): Flow<Cocktail>
 
-    @Query("SELECT * FROM ingredient_table WHERE name = :name")
-    fun getIngredientByName(name: String): Ingredient
+    @Query("SELECT * FROM ingredient_table WHERE name = :name LIMIT 1")
+    fun getIngredientByName(name: String): Flow<Ingredient>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addIngredient(ingredient: Ingredient)

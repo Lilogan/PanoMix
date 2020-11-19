@@ -26,26 +26,6 @@ class IngredientsAdapter() : BaseRecyclerViewAdapter<Ingredient>() {
         View.OnClickListener {
         private var itemName: TextView = itemView.findViewById(R.id.ingredientNameTextView)
 
-        init {
-            itemView.setOnLongClickListener{
-                val pop = PopupMenu(itemView.context,it)
-                pop.inflate(R.menu.popup_menu)
-                pop.setOnMenuItemClickListener { item->
-                    when(item.itemId)
-                    {
-                        R.id.change_Quantity->{
-
-                        }
-                        R.id.delete_ing->{
-
-                        }
-                    }
-                    true
-                }
-                pop.show()
-                true
-            }
-        }
 
         fun setUpIngredient(ingredient: Ingredient?) {
             itemName.text = ingredient?.name

@@ -16,8 +16,8 @@ class SplashViewModel(private val repository: PanomixRepository) : ViewModel() {
     val availableIngredients = repository.availableIngredients.asLiveData()
     val availableCocktails = repository.allCocktail.asLiveData()
 
-    fun getIngredientByName(name: String) = repository.getIngredientByName(name)
-    fun getCocktailByName(name: String) = repository.getCocktailByName(name)
+    fun getIngredientByName(name: String) = repository.getIngredientByName(name).asLiveData()
+    fun getCocktailByName(name: String) = repository.getCocktailByName(name).asLiveData()
 
     fun addIngredient(ingredient: Ingredient) = viewModelScope.launch() {
         repository.addIngredient(ingredient)

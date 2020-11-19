@@ -13,11 +13,11 @@ class PanomixRepository(private val panomixDao: PanomixDao) {
     val allCocktail: Flow<List<Cocktail>> = panomixDao.getAllCocktails()
     val availableIngredients: Flow<List<Ingredient>> = panomixDao.getAvailableIngredients()
 
-    fun getCocktailByName(name: String): Cocktail {
+    fun getCocktailByName(name: String): Flow<Cocktail> {
         return panomixDao.getCocktailByName(name)
     }
 
-    fun getIngredientByName(name: String): Ingredient {
+    fun getIngredientByName(name: String): Flow<Ingredient> {
         return panomixDao.getIngredientByName(name)
     }
 
