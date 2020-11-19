@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 data class IngredientInCocktail(
     var id_cocktail: Int?,
     var id_ingredient: Int?,
-    var quantity: String?,
+    var quantity: String? = null,
 ) {
     @PrimaryKey(autoGenerate = true)
     var id: Int? = null

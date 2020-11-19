@@ -3,6 +3,7 @@ package fr.isen.panomix.database
 import androidx.room.*
 import fr.isen.panomix.data.model.Cocktail
 import fr.isen.panomix.data.model.Ingredient
+import fr.isen.panomix.data.model.IngredientInCocktail
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -16,11 +17,20 @@ interface PanomixDao {
     @Query("SELECT * FROM cocktail_table")
     fun getAllCocktails(): Flow<List<Cocktail>>
 
+    @Query("SELECT * FROM cocktail_table WHERE name = :name")
+    fun getCocktailByName(name: String): Cocktail
+
+    @Query("SELECT * FROM ingredient_table WHERE name = :name")
+    fun getIngredientByName(name: String): Ingredient
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addIngredient(ingredient: Ingredient)
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addCocktail(cocktail: Cocktail)
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun addIngredientInCocktail(ingredientInCocktail: IngredientInCocktail)
 
     @Query("DELETE FROM ingredient_table")
     suspend fun deleteAllIngredient()
@@ -29,7 +39,7 @@ interface PanomixDao {
     suspend fun deleteAllCocktails()
 
     @Update
-    suspend fun updateItem(ingredient : Ingredient)
+    suspend fun updateItem(ingredient: Ingredient)
 
     @Delete
     suspend fun deleteOneIngredient(ingredient: Ingredient)

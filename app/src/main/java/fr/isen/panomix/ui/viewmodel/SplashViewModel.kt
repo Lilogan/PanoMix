@@ -6,6 +6,7 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import fr.isen.panomix.data.model.Cocktail
 import fr.isen.panomix.data.model.Ingredient
+import fr.isen.panomix.data.model.IngredientInCocktail
 import fr.isen.panomix.data.repository.PanomixRepository
 import kotlinx.coroutines.launch
 import java.lang.IllegalArgumentException
@@ -15,6 +16,9 @@ class SplashViewModel(private val repository: PanomixRepository) : ViewModel() {
     val availableIngredients = repository.availableIngredients.asLiveData()
     val availableCocktails = repository.allCocktail.asLiveData()
 
+    fun getIngredientByName(name: String) = repository.getIngredientByName(name)
+    fun getCocktailByName(name: String) = repository.getCocktailByName(name)
+
     fun addIngredient(ingredient: Ingredient) = viewModelScope.launch() {
         repository.addIngredient(ingredient)
     }
@@ -22,6 +26,11 @@ class SplashViewModel(private val repository: PanomixRepository) : ViewModel() {
     fun addCocktail(cocktail: Cocktail) = viewModelScope.launch() {
         repository.addCocktail(cocktail)
     }
+
+    fun addIngredientInCocktail(ingredientInCocktail: IngredientInCocktail) =
+        viewModelScope.launch {
+            repository.addIngredientInCocktail(ingredientInCocktail)
+        }
 
 }
 

@@ -4,6 +4,7 @@ import androidx.annotation.WorkerThread
 import fr.isen.panomix.database.PanomixDao
 import fr.isen.panomix.data.model.Cocktail
 import fr.isen.panomix.data.model.Ingredient
+import fr.isen.panomix.data.model.IngredientInCocktail
 import kotlinx.coroutines.flow.Flow
 
 class PanomixRepository(private val panomixDao: PanomixDao) {
@@ -11,6 +12,14 @@ class PanomixRepository(private val panomixDao: PanomixDao) {
     val allIngredients: Flow<List<Ingredient>> = panomixDao.getAllIngredients()
     val allCocktail: Flow<List<Cocktail>> = panomixDao.getAllCocktails()
     val availableIngredients: Flow<List<Ingredient>> = panomixDao.getAvailableIngredients()
+
+    fun getCocktailByName(name: String): Cocktail {
+        return panomixDao.getCocktailByName(name)
+    }
+
+    fun getIngredientByName(name: String): Ingredient {
+        return panomixDao.getIngredientByName(name)
+    }
 
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
@@ -24,8 +33,11 @@ class PanomixRepository(private val panomixDao: PanomixDao) {
         panomixDao.addIngredient(ingredient)
     }
 
+    @Suppress("RedundantSuspendModifier")
     @WorkerThread
-    suspend fun deleteOneIngredient(ingredient : Ingredient){
-        panomixDao.deleteOneIngredient(ingredient)
+    suspend fun addIngredientInCocktail(ingredientInCocktail: IngredientInCocktail) {
+        panomixDao.addIngredientInCocktail(ingredientInCocktail)
     }
+
+
 }
