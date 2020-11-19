@@ -25,8 +25,6 @@ class IngredientsAdapter() : BaseRecyclerViewAdapter<Ingredient>() {
     inner class IngredientViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
         View.OnClickListener {
         private var itemName: TextView = itemView.findViewById(R.id.ingredientNameTextView)
-        private var itemUnit: TextView = itemView.findViewById(R.id.ingredientUnitTextView)
-        private var itemQuantity: TextView = itemView.findViewById(R.id.ingredientQuantityTextView)
 
         init {
             itemView.setOnLongClickListener{

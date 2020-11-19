@@ -4,12 +4,20 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import androidx.activity.viewModels
+import fr.isen.panomix.PanomixApplication
 import fr.isen.panomix.R
 import fr.isen.panomix.data.api.ApiService
+import fr.isen.panomix.ui.viewmodel.SplashViewModel
+import fr.isen.panomix.ui.viewmodel.SplashViewModelFactory
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class SplashActivity : AppCompatActivity() {
+
+    private val viewModel: SplashViewModel by viewModels {
+        SplashViewModelFactory((application as PanomixApplication).repository)
+    }
 
     private val retrofit: Retrofit = Retrofit.Builder()
         .baseUrl("https://www.thecocktaildb.com/api/json/v1/1/")
