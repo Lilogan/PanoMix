@@ -8,7 +8,7 @@ import java.io.Serializable
 data class Ingredient(
     var name: String?,
     var unit: String?,
-    var quantity: Double?,
+    var available: Boolean? = false,
     var img: String? = null,
 ) : Serializable {
     @PrimaryKey(autoGenerate = true)
