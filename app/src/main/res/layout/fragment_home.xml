@@ -5,9 +5,15 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragment.HomeFragment">
 
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/bottom_navigation_menu_home" />
+        tools:context=".DisplayCocktailActivity">
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/homeRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

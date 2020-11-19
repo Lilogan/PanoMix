@@ -8,7 +8,7 @@ data class Cocktail(
     var name: String?,
     var img: String? = null,
     var instruction: String? = null,
-) {
+){
     @PrimaryKey(autoGenerate = true)
     var id: Int? = null
 }

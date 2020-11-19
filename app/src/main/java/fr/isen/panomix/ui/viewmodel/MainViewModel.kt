@@ -1,12 +1,14 @@
 package fr.isen.panomix.ui.viewmodel
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.viewModelScope
+import android.util.Log
+import androidx.lifecycle.*
 import fr.isen.panomix.data.model.Cocktail
 import fr.isen.panomix.data.model.Ingredient
 import fr.isen.panomix.data.repository.PanomixRepository
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.asFlow
+import kotlinx.coroutines.flow.count
+import kotlinx.coroutines.flow.single
 import kotlinx.coroutines.launch
 import java.lang.IllegalArgumentException
 
@@ -14,6 +16,34 @@ class MainViewModel(private val repository: PanomixRepository) : ViewModel() {
 
     val availableIngredients = repository.availableIngredients.asLiveData()
     val availableCocktails = repository.allCocktail.asLiveData()
+
+    fun getPossibleCocktails(): MutableList<Cocktail> {
+        val allCocktails = availableCocktails.value
+        val allIngredients = availableIngredients.value
+        var possibleCocktails = mutableListOf<Cocktail>();
+        if (allCocktails != null && allIngredients != null) {
+            for (cocktail in allCocktails) {
+                val cocktailId = cocktail.id
+                val cocktailIngredient =
+                    cocktailId?.let { repository.getCocktailIngredient(it).asLiveData().value }
+                var allIngredientAvailable = true;
+                if (cocktailIngredient != null) {
+                    for (ingredient in cocktailIngredient) {
+                        if(ingredient !in allIngredients){
+                            allIngredientAvailable = false
+                            break
+                        }
+                    }
+                    if(allIngredientAvailable){
+                        possibleCocktails.add(cocktail)
+                    }
+                }
+
+            }
+        }
+        return possibleCocktails
+
+    }
 
     fun addIngredient(ingredient: Ingredient) = viewModelScope.launch() {
         repository.addIngredient(ingredient)

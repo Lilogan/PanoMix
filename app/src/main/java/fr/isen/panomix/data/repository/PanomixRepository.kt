@@ -33,11 +33,18 @@ class PanomixRepository(private val panomixDao: PanomixDao) {
         panomixDao.addIngredient(ingredient)
     }
 
+    fun getCocktailIngredient(id: Int): Flow<List<Ingredient>> {
+        return panomixDao.getCocktailIngredients(id)
+    }
+
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
     suspend fun addIngredientInCocktail(ingredientInCocktail: IngredientInCocktail) {
         panomixDao.addIngredientInCocktail(ingredientInCocktail)
     }
 
-
+    @WorkerThread
+    suspend fun deleteOneIngredient(ingredient : Ingredient){
+        panomixDao.deleteOneIngredient(ingredient)
+    }
 }

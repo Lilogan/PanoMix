@@ -23,6 +23,9 @@ interface PanomixDao {
     @Query("SELECT * FROM ingredient_table WHERE name = :name LIMIT 1")
     fun getIngredientByName(name: String): Flow<Ingredient>
 
+    @Query("SELECT * FROM map_cocktail_ingredient WHERE id_cocktail == :id")
+    fun getCocktailIngredients(id: Int): Flow<List<Ingredient>>
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addIngredient(ingredient: Ingredient)
 

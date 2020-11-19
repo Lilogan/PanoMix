@@ -10,7 +10,7 @@ import com.squareup.picasso.Picasso
 import fr.isen.panomix.R
 import fr.isen.panomix.data.model.Cocktail
 
-class BarAdapter() : BaseRecyclerViewAdapter<Cocktail>() {
+class CocktailAdapter() : BaseRecyclerViewAdapter<Cocktail>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BarViewHolder {
         val itemView =

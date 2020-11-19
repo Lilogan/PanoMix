@@ -225,7 +225,8 @@ class SplashActivity : AppCompatActivity() {
     private fun sheduleTest() {
         val testDuration = 2000L
         Handler().postDelayed({
-
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
         }, testDuration)
     }
 }

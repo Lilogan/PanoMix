@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import fr.isen.panomix.PanomixApplication
 import fr.isen.panomix.R
-import fr.isen.panomix.ui.adapter.BarAdapter
+import fr.isen.panomix.ui.adapter.CocktailAdapter
 import fr.isen.panomix.ui.adapter.HeaderViewDecoration
 import fr.isen.panomix.ui.viewmodel.MainViewModel
 import fr.isen.panomix.ui.viewmodel.MainViewModelFactory
@@ -36,7 +36,7 @@ class BarFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = BarAdapter()
+        val adapter = CocktailAdapter()
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.cocktailRecyclerView)
         recyclerView.adapter = adapter

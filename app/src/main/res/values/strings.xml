@@ -9,6 +9,7 @@
     <!-- Header -->
     <string name="header_storage">List of ingredient</string>
     <string name="header_bar">List of cocktail</string>
+    <string name="header_home">Possible cocktails</string>
 
     <!-- New Ingredient -->
     <string name="new_ingredient_name">Name</string>
