@@ -40,7 +40,7 @@ class IngredientsAdapter() : BaseRecyclerViewAdapter<Ingredient>() {
                     when(item.itemId)
                     {
                         R.id.change_Quantity->{
-                            
+
                         }
                         R.id.delete_ing->{
 

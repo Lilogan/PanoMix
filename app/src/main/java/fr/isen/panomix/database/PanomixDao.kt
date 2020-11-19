@@ -29,9 +29,9 @@ interface PanomixDao {
     suspend fun deleteAllCocktails()
 
     @Update
-    fun updateItem(ingredient : Ingredient)
+    suspend fun updateItem(ingredient : Ingredient)
 
     @Delete
-    fun deleteOneIngredient(ingredient: Ingredient)
+    suspend fun deleteOneIngredient(ingredient: Ingredient)
 
 }
