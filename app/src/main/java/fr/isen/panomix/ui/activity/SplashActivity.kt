@@ -40,8 +40,6 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        // API CALLS
-
         startActivity(Intent(this, MainActivity::class.java))
         finish()
 
@@ -119,113 +117,111 @@ class SplashActivity : AppCompatActivity() {
 
         val allDrinksByID = mutableListOf<DrinksByIDFromApi>()
 
-        if(idList != null){
-            for (id in idList){
-                val drinksByIDRequest = service.getDrinks(id.toString())
-                drinksByIDRequest.enqueue(object : Callback<DrinksByIDAPI> {
-                    override fun onResponse(
-                        call: Call<DrinksByIDAPI>,
-                        response: Response<DrinksByIDAPI>
-                    ) {
-                        for (x in 0 until response.body()?.drinks?.size!!) {
-                            response.body()?.drinks?.get(x)?.let { allDrinksByID.add(it) }
-                        }
-
-                        for (element in allDrinksByID) {
-                            val currentCocktail =
-                                Cocktail(element.drinkName, element.img, element.strInstructions)
-                            viewModel.addCocktail(currentCocktail)
-                        }
-                        for (element in allDrinksByID) {
-                            val cocktailID =
-                                element.drinkName?.let { viewModel.getCocktailByName(it).value }
-                            val ingredient1ID = element.strIngredient1?.let {
-                                viewModel.getIngredientByName(
-                                    it
-                                ).value
-                            }
-                            val ingredient2ID = element.strIngredient2?.let {
-                                viewModel.getIngredientByName(
-                                    it
-                                ).value
-                            }
-                            val ingredient3ID = element.strIngredient3?.let {
-                                viewModel.getIngredientByName(
-                                    it
-                                ).value
-                            }
-                            val ingredient4ID = element.strIngredient4?.let {
-                                viewModel.getIngredientByName(
-                                    it
-                                ).value
-                            }
-                            val ingredient5ID = element.strIngredient5?.let {
-                                viewModel.getIngredientByName(
-                                    it
-                                ).value
-                            }
-
-                            val ingredient1Q = element.strQuantity1
-                            val ingredient2Q = element.strQuantity2
-                            val ingredient3Q = element.strQuantity3
-                            val ingredient4Q = element.strQuantity4
-                            val ingredient5Q = element.strQuantity5
-
-                            if (element.strIngredient1 != null) {
-                                val linkIngredientCocktail = IngredientInCocktail(
-                                    cocktailID?.id,
-                                    ingredient1ID?.id,
-                                    ingredient1Q
-                                )
-                                viewModel.addIngredientInCocktail(linkIngredientCocktail)
-                            }
-
-                            if (element.strIngredient2 != null) {
-                                val linkIngredientCocktail = IngredientInCocktail(
-                                    cocktailID?.id,
-                                    ingredient2ID?.id,
-                                    ingredient2Q
-                                )
-                                viewModel.addIngredientInCocktail(linkIngredientCocktail)
-                            }
-
-                            if (element.strIngredient3 != null) {
-                                val linkIngredientCocktail = IngredientInCocktail(
-                                    cocktailID?.id,
-                                    ingredient3ID?.id,
-                                    ingredient3Q
-                                )
-                                viewModel.addIngredientInCocktail(linkIngredientCocktail)
-                            }
-
-                            if (element.strIngredient4 != null) {
-                                val linkIngredientCocktail = IngredientInCocktail(
-                                    cocktailID?.id,
-                                    ingredient4ID?.id,
-                                    ingredient4Q
-                                )
-                                viewModel.addIngredientInCocktail(linkIngredientCocktail)
-                            }
-
-                            if (element.strIngredient5 != null) {
-                                val linkIngredientCocktail = IngredientInCocktail(
-                                    cocktailID?.id,
-                                    ingredient5ID?.id,
-                                    ingredient5Q
-                                )
-                                viewModel.addIngredientInCocktail(linkIngredientCocktail)
-                            }
-
-                        }
-                        allDrinksByID.clear()
-                        Log.d("Api", "Calls End")
+        for (id in idList) {
+            val drinksByIDRequest = service.getDrinks(id.toString())
+            drinksByIDRequest.enqueue(object : Callback<DrinksByIDAPI> {
+                override fun onResponse(
+                    call: Call<DrinksByIDAPI>,
+                    response: Response<DrinksByIDAPI>
+                ) {
+                    for (x in 0 until response.body()?.drinks?.size!!) {
+                        response.body()?.drinks?.get(x)?.let { allDrinksByID.add(it) }
                     }
 
-                    override fun onFailure(call: Call<DrinksByIDAPI>, t: Throwable) {
-                        error("Error while calling API getAllDrinksByGivenID")
+                    for (element in allDrinksByID) {
+                        val currentCocktail =
+                            Cocktail(element.drinkName, element.img, element.strInstructions)
+                        viewModel.addCocktail(currentCocktail)
                     }
-                })
-            }
+                    for (element in allDrinksByID) {
+                        val cocktailID =
+                            element.drinkName?.let { viewModel.getCocktailByName(it).value }
+                        val ingredient1ID = element.strIngredient1?.let {
+                            viewModel.getIngredientByName(
+                                it
+                            ).value
+                        }
+                        val ingredient2ID = element.strIngredient2?.let {
+                            viewModel.getIngredientByName(
+                                it
+                            ).value
+                        }
+                        val ingredient3ID = element.strIngredient3?.let {
+                            viewModel.getIngredientByName(
+                                it
+                            ).value
+                        }
+                        val ingredient4ID = element.strIngredient4?.let {
+                            viewModel.getIngredientByName(
+                                it
+                            ).value
+                        }
+                        val ingredient5ID = element.strIngredient5?.let {
+                            viewModel.getIngredientByName(
+                                it
+                            ).value
+                        }
+
+                        val ingredient1Q = element.strQuantity1
+                        val ingredient2Q = element.strQuantity2
+                        val ingredient3Q = element.strQuantity3
+                        val ingredient4Q = element.strQuantity4
+                        val ingredient5Q = element.strQuantity5
+
+                        if (element.strIngredient1 != null) {
+                            val linkIngredientCocktail = IngredientInCocktail(
+                                cocktailID?.id,
+                                ingredient1ID?.id,
+                                ingredient1Q
+                            )
+                            viewModel.addIngredientInCocktail(linkIngredientCocktail)
+                        }
+
+                        if (element.strIngredient2 != null) {
+                            val linkIngredientCocktail = IngredientInCocktail(
+                                cocktailID?.id,
+                                ingredient2ID?.id,
+                                ingredient2Q
+                            )
+                            viewModel.addIngredientInCocktail(linkIngredientCocktail)
+                        }
+
+                        if (element.strIngredient3 != null) {
+                            val linkIngredientCocktail = IngredientInCocktail(
+                                cocktailID?.id,
+                                ingredient3ID?.id,
+                                ingredient3Q
+                            )
+                            viewModel.addIngredientInCocktail(linkIngredientCocktail)
+                        }
+
+                        if (element.strIngredient4 != null) {
+                            val linkIngredientCocktail = IngredientInCocktail(
+                                cocktailID?.id,
+                                ingredient4ID?.id,
+                                ingredient4Q
+                            )
+                            viewModel.addIngredientInCocktail(linkIngredientCocktail)
+                        }
+
+                        if (element.strIngredient5 != null) {
+                            val linkIngredientCocktail = IngredientInCocktail(
+                                cocktailID?.id,
+                                ingredient5ID?.id,
+                                ingredient5Q
+                            )
+                            viewModel.addIngredientInCocktail(linkIngredientCocktail)
+                        }
+
+                    }
+                    allDrinksByID.clear()
+                    Log.d("Api", "Calls End")
+                }
+
+                override fun onFailure(call: Call<DrinksByIDAPI>, t: Throwable) {
+                    error("Error while calling API getAllDrinksByGivenID")
+                }
+            })
         }
     }
 

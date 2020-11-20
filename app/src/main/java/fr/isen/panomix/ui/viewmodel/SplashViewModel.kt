@@ -31,12 +31,6 @@ class SplashViewModel(private val repository: PanomixRepository) : ViewModel() {
             repository.addIngredientInCocktail(ingredientInCocktail)
         }
 
-    private val retrofit: Retrofit = Retrofit.Builder()
-        .baseUrl("https://www.thecocktaildb.com/api/json/v1/1/")
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
-    private val service = retrofit.create(ApiService::class.java)
-
 }
 
 class SplashViewModelFactory(private val repository: PanomixRepository) :

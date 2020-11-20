@@ -7,14 +7,14 @@ import fr.isen.panomix.data.model.Ingredient
 import fr.isen.panomix.data.repository.PanomixRepository
 import java.lang.IllegalArgumentException
 
-class RecipelViewModel(private val repository: PanomixRepository) : ViewModel()  {
-    //TODO: remove
+class RecipeViewModel(private val repository: PanomixRepository) : ViewModel() {
     fun getCocktailIngredient(id: Int): MutableList<Ingredient> {
         val ingredients = mutableListOf<Ingredient>()
-        if (repository.getCocktailIngredient(id).asLiveData().value != null){
+        if (repository.getCocktailIngredient(id).asLiveData().value != null) {
             for (ingredient in repository.getCocktailIngredient(id).asLiveData().value!!) {
-                val ingredientById = ingredient.id?.let { repository.getIngredientById(it).asLiveData().value }
-                if(ingredientById != null){
+                val ingredientById =
+                    ingredient.id?.let { repository.getIngredientById(it).asLiveData().value }
+                if (ingredientById != null) {
                     ingredients.add(ingredientById)
                 }
             }
@@ -22,15 +22,17 @@ class RecipelViewModel(private val repository: PanomixRepository) : ViewModel() 
 
         return ingredients
     }
+
+
 }
 
 
-class RecipelViewModelFactory(private val repository: PanomixRepository) :
+class RecipeViewModelFactory(private val repository: PanomixRepository) :
     ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(RecipelViewModel::class.java)) {
+        if (modelClass.isAssignableFrom(RecipeViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
-            return RecipelViewModel(repository) as T
+            return RecipeViewModel(repository) as T
         }
         throw IllegalArgumentException("Unknow ViewModel class")
     }

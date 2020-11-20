@@ -12,17 +12,12 @@ import fr.isen.panomix.ui.viewmodel.MainViewModelFactory
 
 class NewIngredientActivity : AppCompatActivity() {
     private lateinit var editName: EditText
-    private lateinit var editQuantity: EditText
-    private lateinit var unitRadioGroup: RadioGroup
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_ingredient)
 
         editName = findViewById(R.id.editNewIngredientName)
-        editQuantity = findViewById(R.id.editNewIngredientQuantity)
-        unitRadioGroup = findViewById(R.id.newIngredientUnitRadioGroup)
-
         val button = findViewById<Button>(R.id.submitNewIngredientButton)
         button.setOnClickListener {
             val replyIntent = Intent()

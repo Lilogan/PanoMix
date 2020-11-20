@@ -35,77 +35,12 @@
         android:layout_height="wrap_content"
         android:autofillHints=""
         android:ems="10"
+        android:importantForAutofill="no"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/editNewIngredientQuantity"
+        app:layout_constraintBottom_toTopOf="@+id/submitNewIngredientButton"
         app:layout_constraintEnd_toEndOf="@+id/newIngredientImageView"
         app:layout_constraintStart_toStartOf="@+id/newIngredientImageView"
-        app:layout_constraintTop_toBottomOf="@+id/newIngredientImageView"
-        android:importantForAutofill="no" />
-
-    <TextView
-        android:id="@+id/newIngredientQuantityTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:labelFor="@id/editNewIngredientQuantity"
-        android:text="@string/new_ingredient_quantity"
-        app:layout_constraintBottom_toTopOf="@+id/editNewIngredientQuantity"
-        app:layout_constraintEnd_toEndOf="@+id/editNewIngredientQuantity"
-        app:layout_constraintStart_toStartOf="@+id/editNewIngredientQuantity" />
-
-    <EditText
-        android:id="@+id/editNewIngredientQuantity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/newIngredientUnitRadioGroup"
-        app:layout_constraintEnd_toEndOf="@+id/editNewIngredientName"
-        app:layout_constraintStart_toStartOf="@+id/editNewIngredientName"
-        app:layout_constraintTop_toBottomOf="@+id/editNewIngredientName"
-        android:importantForAutofill="no" />
-
-    <TextView
-        android:id="@+id/newIngredientUnitTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:labelFor="@id/newIngredientUnitRadioGroup"
-        android:text="@string/new_ingredient_unit"
-        app:layout_constraintBottom_toTopOf="@+id/newIngredientUnitRadioGroup"
-        app:layout_constraintEnd_toEndOf="@+id/newIngredientUnitRadioGroup"
-        app:layout_constraintStart_toStartOf="@+id/newIngredientUnitRadioGroup" />
-
-    <RadioGroup
-        android:id="@+id/newIngredientUnitRadioGroup"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/submitNewIngredientButton"
-        app:layout_constraintEnd_toEndOf="@+id/editNewIngredientQuantity"
-        app:layout_constraintStart_toStartOf="@+id/editNewIngredientQuantity"
-        app:layout_constraintTop_toBottomOf="@+id/editNewIngredientQuantity">
-
-        <RadioButton
-            android:id="@+id/unitOneRadioButton"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@string/new_ingredient_unit_one" />
-
-        <RadioButton
-            android:id="@+id/unitSolidRadioButton"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@string/new_ingredient_unit_solid" />
-
-        <RadioButton
-            android:id="@+id/unitLiquidRadioButton"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@string/new_ingredient_unit_liquid" />
-
-    </RadioGroup>
+        app:layout_constraintTop_toBottomOf="@+id/newIngredientImageView" />
 
     <Button
         android:id="@+id/submitNewIngredientButton"
@@ -114,8 +49,8 @@
         android:layout_marginBottom="@dimen/new_ingredient_padding"
         android:text="@string/new_ingredient_submit"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/newIngredientUnitRadioGroup"
-        app:layout_constraintStart_toStartOf="@+id/newIngredientUnitRadioGroup"
-        app:layout_constraintTop_toBottomOf="@+id/newIngredientUnitRadioGroup" />
+        app:layout_constraintEnd_toEndOf="@+id/editNewIngredientName"
+        app:layout_constraintStart_toStartOf="@+id/editNewIngredientName"
+        app:layout_constraintTop_toBottomOf="@+id/editNewIngredientName" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

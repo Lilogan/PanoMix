@@ -16,11 +16,11 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import fr.isen.panomix.ui.activity.NewIngredientActivity
 import fr.isen.panomix.PanomixApplication
 import fr.isen.panomix.R
-import fr.isen.panomix.ui.adapter.HeaderViewDecoration
 import fr.isen.panomix.ui.adapter.IngredientsAdapter
 import fr.isen.panomix.data.model.Ingredient
 import fr.isen.panomix.ui.viewmodel.MainViewModel
 import fr.isen.panomix.ui.viewmodel.MainViewModelFactory
+import fr.isen.panomix.utils.OnItemClickListener
 
 /**
  * A simple [Fragment] subclass.
@@ -45,6 +45,7 @@ class StorageFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val adapter = IngredientsAdapter()
+        adapter.setOnItemClickListener(OnIngredientClickListener())
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.storageRecyclerView)
         recyclerView.adapter = adapter
@@ -75,6 +76,12 @@ class StorageFragment : Fragment() {
                 mainViewModel.addIngredient(newIngredient)
                 Toast.makeText(context, newIngredient.name + " added !", Toast.LENGTH_LONG).show()
             }
+        }
+    }
+
+    inner class OnIngredientClickListener : OnItemClickListener<Ingredient> {
+        override fun onItemClick(item: Ingredient, position: Int) {
+            item.id?.let { mainViewModel.updateIngredient(it, !item.available!!) }
         }
     }
 }

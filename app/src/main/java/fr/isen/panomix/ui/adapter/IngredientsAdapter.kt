@@ -3,11 +3,11 @@ package fr.isen.panomix.ui.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.PopupMenu
-import android.widget.TextView
+import android.widget.CheckBox
 import androidx.recyclerview.widget.RecyclerView
 import fr.isen.panomix.R
 import fr.isen.panomix.data.model.Ingredient
+import fr.isen.panomix.utils.OnItemClickListener
 
 class IngredientsAdapter() : BaseRecyclerViewAdapter<Ingredient>() {
 
@@ -22,18 +22,22 @@ class IngredientsAdapter() : BaseRecyclerViewAdapter<Ingredient>() {
         viewHolder?.setUpIngredient(ingredient = getItem(position))
     }
 
-    inner class IngredientViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
-        View.OnClickListener {
-        private var itemName: TextView = itemView.findViewById(R.id.ingredientNameTextView)
+    inner class IngredientViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private var itemCheckBox: CheckBox = itemView.findViewById(R.id.ingredientCheckBox)
 
         fun setUpIngredient(ingredient: Ingredient?) {
-            itemName.text = ingredient?.name
+            itemCheckBox.text = ingredient?.name
+            itemCheckBox.isChecked = ingredient?.available!!
+
+            itemView.setOnClickListener {
+                itemClickListener?.onItemClick(ingredient, adapterPosition)
+            }
+
         }
 
-        override fun onClick(v: View?) {
-            itemClickListener?.onItemClick(adapterPosition, v)
-        }
     }
 
 }
+
+
 

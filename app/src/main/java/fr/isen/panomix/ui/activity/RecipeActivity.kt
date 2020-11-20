@@ -1,0 +1,30 @@
+package fr.isen.panomix.ui.activity
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import androidx.activity.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import fr.isen.panomix.PanomixApplication
+import fr.isen.panomix.R
+import fr.isen.panomix.ui.adapter.IngredientsAdapter
+import fr.isen.panomix.ui.viewmodel.*
+
+
+class RecipeActivity : AppCompatActivity() {
+    private val viewModel: RecipeViewModel by viewModels {
+        RecipeViewModelFactory((this.application as PanomixApplication).repository)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_recipe)
+        val recyclerView = findViewById<RecyclerView>(R.id.recipeRecylcerView)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        val adapter = IngredientsAdapter()
+        recyclerView.adapter = adapter
+        val id = intent.getIntExtra("itemId", 0)
+        adapter.setItems(viewModel.getCocktailIngredient(id))
+    }
+
+}

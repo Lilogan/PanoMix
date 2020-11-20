@@ -50,6 +50,10 @@ class MainViewModel(private val repository: PanomixRepository) : ViewModel() {
         repository.addCocktail(cocktail)
     }
 
+    fun updateIngredient(id: Int, available: Boolean) = viewModelScope.launch {
+        repository.updateIngredient(id, available)
+    }
+
 }
 
 class MainViewModelFactory(private val repository: PanomixRepository) :

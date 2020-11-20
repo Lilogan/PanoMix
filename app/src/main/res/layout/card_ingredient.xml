@@ -30,18 +30,17 @@
             app:srcCompat="@drawable/ic_bar"
             tools:srcCompat="@drawable/ic_bar" />
 
-        <TextView
-            android:id="@+id/ingredientNameTextView"
+        <CheckBox
+            android:id="@+id/ingredientCheckBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/ingredient_spacing"
-            android:contentDescription="@string/description_ingredient_name"
             android:text="@string/placeholder_ingredient_name"
-            android:textAlignment="center"
+            android:clickable="false"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ingredientImageView"
-            tools:text="@string/placeholder_ingredient_name" />
+            app:layout_constraintTop_toBottomOf="@+id/ingredientImageView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

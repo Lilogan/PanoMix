@@ -1,14 +1,13 @@
 package fr.isen.panomix.ui.adapter
 
 import androidx.recyclerview.widget.RecyclerView
-import fr.isen.panomix.data.model.Ingredient
 import fr.isen.panomix.utils.OnItemClickListener
-import kotlinx.coroutines.flow.Flow
 
 abstract class BaseRecyclerViewAdapter<T> : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
+
     private var list: List<T>? = emptyList()
-    protected var itemClickListener: OnItemClickListener? = null
+    protected var itemClickListener: OnItemClickListener<T>? = null
 
     fun setItems(items: List<T>) {
         this.list = items
@@ -19,7 +18,7 @@ abstract class BaseRecyclerViewAdapter<T> : RecyclerView.Adapter<RecyclerView.Vi
         return this.list?.get(position)
     }
 
-    fun setOnItemClickListener(onItemClickListener: OnItemClickListener) {
+    fun setOnItemClickListener(onItemClickListener: OnItemClickListener<T>) {
         this.itemClickListener = onItemClickListener
     }
 

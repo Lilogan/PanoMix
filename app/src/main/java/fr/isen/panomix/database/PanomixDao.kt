@@ -11,18 +11,11 @@ interface PanomixDao {
     @Query("SELECT * FROM ingredient_table")
     fun getAllIngredients(): Flow<List<Ingredient>>
 
-    //TODO: remove
-    @Query("SELECT * FROM cocktail_table WHERE id == :id")
-    fun getCocktailById(id: Int): Flow<List<Cocktail>>
-
     @Query("SELECT * FROM ingredient_table WHERE available")
     fun getAvailableIngredients(): Flow<List<Ingredient>>
 
     @Query("SELECT * FROM cocktail_table")
     fun getAllCocktails(): Flow<List<Cocktail>>
-
-    @Query("SELECT * FROM ingredient_table WHERE available == :available")
-    fun getAvailableIngredients(available: Boolean): Flow<List<Ingredient>>
 
     @Query("SELECT * FROM cocktail_table WHERE name = :name LIMIT 1")
     fun getCocktailByName(name: String): Flow<Cocktail>
@@ -33,8 +26,11 @@ interface PanomixDao {
     @Query("SELECT * FROM ingredient_table WHERE id = :id LIMIT 1")
     fun getIngredientById(id: Int): Flow<Ingredient>
 
-    @Query("SELECT * FROM map_cocktail_ingredient WHERE id_cocktail == :id")
-    fun getCocktailIngredients(id: Int): Flow<List<Ingredient>>
+    @Query("SELECT * FROM cocktail_table WHERE id == :id LIMIT 1")
+    fun getCocktailById(id: Int): Flow<Cocktail>
+
+    @Query("SELECT * FROM map_cocktail_ingredient WHERE id_cocktail == :id_cocktail")
+    fun getIngredientInCocktail(id_cocktail: Int): Flow<List<IngredientInCocktail>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addIngredient(ingredient: Ingredient)
@@ -45,8 +41,8 @@ interface PanomixDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addIngredientInCocktail(ingredientInCocktail: IngredientInCocktail)
 
-    @Update
-    suspend fun updateIngredient(ingredient: Ingredient)
+    @Query("UPDATE ingredient_table SET available = :available WHERE id = :id")
+    suspend fun updateIngredient(id: Int, available: Boolean)
 
     @Query("DELETE FROM ingredient_table")
     suspend fun deleteAllIngredient()
