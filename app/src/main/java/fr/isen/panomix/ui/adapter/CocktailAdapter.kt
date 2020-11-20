@@ -7,13 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import fr.isen.panomix.R
 import fr.isen.panomix.data.model.Cocktail
-import fr.isen.panomix.ui.activity.NewIngredientActivity
-import fr.isen.panomix.ui.activity.ingredientsNeedActivity
+import fr.isen.panomix.ui.activity.RecipeActivity
 
 class CocktailAdapter() : BaseRecyclerViewAdapter<Cocktail>() {
 
@@ -27,7 +25,7 @@ class CocktailAdapter() : BaseRecyclerViewAdapter<Cocktail>() {
         val viewHolder = holder as? BarViewHolder
         viewHolder?.setUpCocktail(cocktail = getItem(position), viewHolder = viewHolder)
         viewHolder?.itemView?.setOnClickListener {
-            val intent = Intent(viewHolder.itemView.context, ingredientsNeedActivity::class.java)
+            val intent = Intent(viewHolder.itemView.context, RecipeActivity::class.java)
             intent.putExtra("itemId", viewHolder.itemId)
             viewHolder.itemView.context.startActivity(intent)
         }
@@ -38,25 +36,19 @@ class CocktailAdapter() : BaseRecyclerViewAdapter<Cocktail>() {
         private var itemName: TextView = itemView.findViewById(R.id.cocktailTextView)
         private var itemImg: ImageView = itemView.findViewById(R.id.cocktailImageView)
         var itemId: Int = 0
-//        init {
-//            itemView.setOnClickListener {
-//                val intent = Intent(itemView.context,ingredientsNeedActivity::class.java)
-//                itemView.context.startActivity(intent)
-//            }
-//        }
 
         fun setUpCocktail(cocktail: Cocktail?, viewHolder: BarViewHolder) {
             itemName.text = cocktail?.name
             itemId = cocktail?.id!!
             Picasso.get()
-                .load(cocktail?.img)
+                .load(cocktail.img)
                 .fit()
                 .centerCrop()
                 .into(viewHolder.itemImg)
         }
 
         override fun onClick(v: View?) {
-            val intent = Intent(itemView.context, ingredientsNeedActivity::class.java)
+            val intent = Intent(itemView.context, RecipeActivity::class.java)
             itemView.context.startActivity(intent)
         }
     }
