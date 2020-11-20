@@ -24,7 +24,7 @@
             android:layout_width="@dimen/ingredient_icon_size"
             android:layout_height="@dimen/ingredient_icon_size"
             android:contentDescription="@string/description_ingredient_img"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_bar"
@@ -34,37 +34,14 @@
             android:id="@+id/ingredientNameTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/ingredient_spacing"
+            android:layout_marginTop="@dimen/ingredient_spacing"
             android:contentDescription="@string/description_ingredient_name"
             android:text="@string/placeholder_ingredient_name"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/ingredientImageView"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="@string/placeholder_ingredient_name" />
-
-        <TextView
-            android:id="@+id/ingredientUnitTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="4dp"
-            android:contentDescription="@string/description_ingredient_unit"
-            android:text="@string/placeholder_ingredient_unit"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.516"
-            tools:text="@string/placeholder_ingredient_unit" />
-
-        <TextView
-            android:id="@+id/ingredientQuantityTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/description_ingredient_quantity"
-            android:text="@string/placeholder_ingredient_quantity"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/ingredientUnitTextView"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="@string/placeholder_ingredient_quantity" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ingredientImageView"
+            tools:text="@string/placeholder_ingredient_name" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

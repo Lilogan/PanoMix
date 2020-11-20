@@ -24,6 +24,7 @@ abstract class PanomixDatabase : RoomDatabase() {
                     val panomixDao = database.panomixDao()
                     populateIngredients(panomixDao)
                     populateCocktails(panomixDao)
+                    panomixDao.deleteAllIngredientInCocktail()
                 }
             }
         }

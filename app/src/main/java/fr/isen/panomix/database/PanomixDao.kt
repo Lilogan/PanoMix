@@ -11,11 +11,11 @@ interface PanomixDao {
     @Query("SELECT * FROM ingredient_table")
     fun getAllIngredients(): Flow<List<Ingredient>>
 
-    @Query("SELECT * FROM ingredient_table WHERE available")
-    fun getAvailableIngredients(): Flow<List<Ingredient>>
-
     @Query("SELECT * FROM cocktail_table")
     fun getAllCocktails(): Flow<List<Cocktail>>
+
+    @Query("SELECT * FROM ingredient_table WHERE available == :available")
+    fun getAvailableIngredients(available: Boolean): Flow<List<Ingredient>>
 
     @Query("SELECT * FROM cocktail_table WHERE name = :name LIMIT 1")
     fun getCocktailByName(name: String): Flow<Cocktail>
@@ -35,16 +35,17 @@ interface PanomixDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addIngredientInCocktail(ingredientInCocktail: IngredientInCocktail)
 
+    @Update
+    suspend fun updateIngredient(ingredient: Ingredient)
+
     @Query("DELETE FROM ingredient_table")
     suspend fun deleteAllIngredient()
 
     @Query("DELETE FROM cocktail_table")
     suspend fun deleteAllCocktails()
 
-    @Update
-    suspend fun updateItem(ingredient: Ingredient)
+    @Query("DELETE FROM map_cocktail_ingredient")
+    suspend fun deleteAllIngredientInCocktail()
 
-    @Delete
-    suspend fun deleteOneIngredient(ingredient: Ingredient)
 
 }

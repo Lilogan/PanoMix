@@ -4,17 +4,17 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
+import fr.isen.panomix.data.api.ApiService
 import fr.isen.panomix.data.model.Cocktail
 import fr.isen.panomix.data.model.Ingredient
 import fr.isen.panomix.data.model.IngredientInCocktail
 import fr.isen.panomix.data.repository.PanomixRepository
 import kotlinx.coroutines.launch
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.lang.IllegalArgumentException
 
 class SplashViewModel(private val repository: PanomixRepository) : ViewModel() {
-
-    val availableIngredients = repository.availableIngredients.asLiveData()
-    val availableCocktails = repository.allCocktail.asLiveData()
 
     fun getIngredientByName(name: String) = repository.getIngredientByName(name).asLiveData()
     fun getCocktailByName(name: String) = repository.getCocktailByName(name).asLiveData()
@@ -31,6 +31,12 @@ class SplashViewModel(private val repository: PanomixRepository) : ViewModel() {
         viewModelScope.launch {
             repository.addIngredientInCocktail(ingredientInCocktail)
         }
+
+    private val retrofit: Retrofit = Retrofit.Builder()
+        .baseUrl("https://www.thecocktaildb.com/api/json/v1/1/")
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+    private val service = retrofit.create(ApiService::class.java)
 
 }
 

@@ -51,17 +51,17 @@ class StorageFragment : Fragment() {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = GridLayoutManager(view.context, 3)
 
-        val headerView =
+        /*val headerView =
             LayoutInflater.from(recyclerView.context).inflate(R.layout.header_storage, null)
         recyclerView.addItemDecoration(HeaderViewDecoration(headerView))
-
+*/
         val button = view.findViewById<FloatingActionButton>(R.id.addNewIngredientButton)
         button.setOnClickListener {
             val intent = Intent(it.context, NewIngredientActivity::class.java)
             startActivityForResult(intent, newIngredientRequestCode)
         }
 
-        mainViewModel.availableIngredients.observe(
+        mainViewModel.allIngredients.observe(
             viewLifecycleOwner,
             { ingredients -> ingredients.let { adapter.setItems(it) } })
 
@@ -76,8 +76,6 @@ class StorageFragment : Fragment() {
                 mainViewModel.addIngredient(newIngredient)
                 Toast.makeText(context, newIngredient.name + " added !", Toast.LENGTH_LONG).show()
             }
-        } else {
-            Toast.makeText(context, "Error", Toast.LENGTH_LONG).show()
         }
     }
 }

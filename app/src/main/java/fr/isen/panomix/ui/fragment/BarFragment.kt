@@ -46,7 +46,7 @@ class BarFragment : Fragment() {
             LayoutInflater.from(recyclerView.context).inflate(R.layout.header_bar, null)
         recyclerView.addItemDecoration(HeaderViewDecoration(headerView))
 
-        mainViewModel.availableCocktails.observe(
+        mainViewModel.allCocktails.observe(
             viewLifecycleOwner,
             { cocktails -> cocktails.let { adapter.setItems(it) } })
     }

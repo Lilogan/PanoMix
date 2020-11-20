@@ -26,7 +26,6 @@ class IngredientsAdapter() : BaseRecyclerViewAdapter<Ingredient>() {
         View.OnClickListener {
         private var itemName: TextView = itemView.findViewById(R.id.ingredientNameTextView)
 
-
         fun setUpIngredient(ingredient: Ingredient?) {
             itemName.text = ingredient?.name
         }
@@ -35,5 +34,6 @@ class IngredientsAdapter() : BaseRecyclerViewAdapter<Ingredient>() {
             itemClickListener?.onItemClick(adapterPosition, v)
         }
     }
+
 }
 

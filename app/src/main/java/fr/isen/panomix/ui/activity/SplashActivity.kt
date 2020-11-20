@@ -22,6 +22,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class SplashActivity : AppCompatActivity() {
 
+    private val context = this
+
     private val viewModel: SplashViewModel by viewModels {
         SplashViewModelFactory((application as PanomixApplication).repository)
     }
@@ -39,17 +41,19 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
 
         // API CALLS
-        sheduleTest()
+
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
 
         val ingredientsList = mutableListOf<String>()
         val ingredientsRequest = service.getIngredients()
 
-        ingredientsRequest.enqueue(object: Callback<IngredientsAPI> {
+        ingredientsRequest.enqueue(object : Callback<IngredientsAPI> {
             override fun onResponse(
                 call: Call<IngredientsAPI>,
                 response: Response<IngredientsAPI>
             ) {
-                for (x in 0 until (response.body()?.strIngredients?.size!!)){
+                for (x in 0 until (response.body()?.strIngredients?.size!!)) {
                     response.body()?.strIngredients?.get(x)?.strIngredient?.let {
                         ingredientsList.add(
                             it
@@ -58,10 +62,11 @@ class SplashActivity : AppCompatActivity() {
                 }
                 getDrinksListByIngredients(ingredientsList)
 
-                for (element in ingredientsList){
+                for (element in ingredientsList) {
                     val currentIngredient = Ingredient(element)
                     viewModel.addIngredient(currentIngredient)
                 }
+
             }
 
             override fun onFailure(call: Call<IngredientsAPI>, t: Throwable) {
@@ -80,23 +85,25 @@ class SplashActivity : AppCompatActivity() {
 
         if (ingredients != null) {
             for (ingredient in ingredients){
-                val drinksListRequest = service.getDrinksByIngredient(ingredient.toString())
-                drinksListRequest.enqueue(object: Callback<DrinksByIngredientAPI> {
+                val drinksListRequest = service.getDrinksByIngredient(ingredient)
+                drinksListRequest.enqueue(object : Callback<DrinksByIngredientAPI> {
                     override fun onResponse(
                         call: Call<DrinksByIngredientAPI>,
                         response: Response<DrinksByIngredientAPI>
                     ) {
-                        for (x in 0 until response.body()?.drinks?.size!!){
+                        for (x in 0 until response.body()?.drinks?.size!!) {
                             response.body()?.drinks?.get(x)?.drinkID?.let { allDrinks.add(it) }
                         }
 
                         getAllDrinksByGivenID(allDrinks)
                         allDrinks.clear()
+
                     }
 
                     override fun onFailure(call: Call<DrinksByIngredientAPI>, t: Throwable) {
                         error("Error while calling API")
                     }
+
 
                 })
             }
@@ -222,11 +229,7 @@ class SplashActivity : AppCompatActivity() {
         }
     }
 
-    private fun sheduleTest() {
-        val testDuration = 2000L
-        Handler().postDelayed({
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
-        }, testDuration)
+    override fun onStop() {
+        super.onStop()
     }
 }

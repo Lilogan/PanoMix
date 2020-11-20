@@ -1,24 +1,20 @@
 package fr.isen.panomix.ui.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.*
 import fr.isen.panomix.data.model.Cocktail
 import fr.isen.panomix.data.model.Ingredient
 import fr.isen.panomix.data.repository.PanomixRepository
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.asFlow
-import kotlinx.coroutines.flow.count
-import kotlinx.coroutines.flow.single
 import kotlinx.coroutines.launch
 import java.lang.IllegalArgumentException
 
 class MainViewModel(private val repository: PanomixRepository) : ViewModel() {
 
     val availableIngredients = repository.availableIngredients.asLiveData()
-    val availableCocktails = repository.allCocktail.asLiveData()
+    val allIngredients = repository.allIngredients.asLiveData()
+    val allCocktails = repository.allCocktail.asLiveData()
 
     fun getPossibleCocktails(): MutableList<Cocktail> {
-        val allCocktails = availableCocktails.value
+        val allCocktails = allCocktails.value
         val allIngredients = availableIngredients.value
         var possibleCocktails = mutableListOf<Cocktail>();
         if (allCocktails != null && allIngredients != null) {
