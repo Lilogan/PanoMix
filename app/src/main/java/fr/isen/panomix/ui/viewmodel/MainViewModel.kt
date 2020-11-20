@@ -13,30 +13,31 @@ class MainViewModel(private val repository: PanomixRepository) : ViewModel() {
     val allIngredients = repository.allIngredients.asLiveData()
     val allCocktails = repository.allCocktail.asLiveData()
 
+
     fun getPossibleCocktails(): MutableList<Cocktail> {
         val allCocktails = allCocktails.value
         val allIngredients = availableIngredients.value
         var possibleCocktails = mutableListOf<Cocktail>();
-        if (allCocktails != null && allIngredients != null) {
-            for (cocktail in allCocktails) {
-                val cocktailId = cocktail.id
-                val cocktailIngredient =
-                    cocktailId?.let { repository.getCocktailIngredient(it).asLiveData().value }
-                var allIngredientAvailable = true;
-                if (cocktailIngredient != null) {
-                    for (ingredient in cocktailIngredient) {
-                        if(ingredient !in allIngredients){
-                            allIngredientAvailable = false
-                            break
-                        }
-                    }
-                    if(allIngredientAvailable){
-                        possibleCocktails.add(cocktail)
-                    }
-                }
-
-            }
-        }
+//        if (allCocktails != null && allIngredients != null) {
+//            for (cocktail in allCocktails) {
+//                val cocktailId = cocktail.id
+//                val cocktailIngredient =
+//                    cocktailId?.let { repository.getCocktailIngredient(it).asLiveData().value }
+//                var allIngredientAvailable = true;
+//                if (cocktailIngredient != null) {
+//                    for (ingredient in cocktailIngredient) {
+//                        if (!(ingredient in allIngredients)) {
+//                            allIngredientAvailable = false
+//                            break
+//                        }
+//                    }
+//                    if (allIngredientAvailable) {
+//                        possibleCocktails.add(cocktail)
+//                    }
+//                }
+//
+//            }
+//        }
         return possibleCocktails
 
     }

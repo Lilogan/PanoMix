@@ -24,23 +24,29 @@ class CocktailAdapter() : BaseRecyclerViewAdapter<Cocktail>() {
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val viewHolder = holder as? BarViewHolder
-        viewHolder?.setUpCocktail(cocktail = getItem(position), viewHolder =  viewHolder)
+        viewHolder?.setUpCocktail(cocktail = getItem(position), viewHolder = viewHolder)
+        viewHolder?.itemView?.setOnClickListener {
+            val intent = Intent(viewHolder.itemView.context, ingredientsNeedActivity::class.java)
+            intent.putExtra("itemId", viewHolder.itemId)
+            viewHolder.itemView.context.startActivity(intent)
+        }
     }
 
     inner class BarViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
         View.OnClickListener {
         private var itemName: TextView = itemView.findViewById(R.id.cocktailTextView)
         private var itemImg: ImageView = itemView.findViewById(R.id.cocktailImageView)
-
-        init {
-            itemView.setOnClickListener {
-                val intent = Intent(itemView.context,ingredientsNeedActivity::class.java)
-                itemView.context.startActivity(intent)
-            }
-        }
+        var itemId: Int = 0
+//        init {
+//            itemView.setOnClickListener {
+//                val intent = Intent(itemView.context,ingredientsNeedActivity::class.java)
+//                itemView.context.startActivity(intent)
+//            }
+//        }
 
         fun setUpCocktail(cocktail: Cocktail?, viewHolder: BarViewHolder) {
             itemName.text = cocktail?.name
+            itemId = cocktail?.id!!
             Picasso.get()
                 .load(cocktail?.img)
                 .fit()
@@ -48,9 +54,9 @@ class CocktailAdapter() : BaseRecyclerViewAdapter<Cocktail>() {
                 .into(viewHolder.itemImg)
         }
 
-
         override fun onClick(v: View?) {
-            itemClickListener?.onItemClick(adapterPosition, v)
+            val intent = Intent(itemView.context, ingredientsNeedActivity::class.java)
+            itemView.context.startActivity(intent)
         }
     }
 
