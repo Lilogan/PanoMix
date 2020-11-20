@@ -15,4 +15,7 @@
 
     <!-- BUTTON -->
     <color name="button_favorite">#F06292</color>
+
+    <!-- WARNING -->
+    <color name="colorWarning">#D32F2F</color>
 </resources>

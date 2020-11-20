@@ -32,6 +32,13 @@ interface PanomixDao {
     @Query("SELECT * FROM map_cocktail_ingredient WHERE id_cocktail == :id_cocktail")
     fun getIngredientInCocktail(id_cocktail: Int): Flow<List<IngredientInCocktail>>
 
+    @Query("SELECT * FROM ingredient_table WHERE id IN (SELECT id_ingredient FROM map_cocktail_ingredient WHERE id_cocktail = :id_cocktail)")
+    fun getIngredientsFromCocktailId(id_cocktail: Int): Flow<List<Ingredient>>
+
+    @Query("SELECT * FROM cocktail_table WHERE id IN (SELECT id_cocktail FROM map_cocktail_ingredient WHERE id_ingredient = :id_ingredient)")
+    fun getCocktailsFromIngredientsId(id_ingredient: Int): Flow<List<Cocktail>>
+
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addIngredient(ingredient: Ingredient)
 

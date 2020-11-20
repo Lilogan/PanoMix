@@ -32,11 +32,13 @@
 
         <CheckBox
             android:id="@+id/ingredientCheckBox"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/ingredient_spacing"
-            android:text="@string/placeholder_ingredient_name"
+            android:button="@android:color/transparent"
             android:clickable="false"
+            android:text="@string/placeholder_ingredient_name"
+            android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
