@@ -8,11 +8,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import fr.isen.panomix.PanomixApplication
 import fr.isen.panomix.R
-import fr.isen.panomix.ui.adapter.IngredientsAdapter
+import fr.isen.panomix.ui.adapter.RecipeAdapter
 import fr.isen.panomix.ui.viewmodel.*
 
 
 class RecipeActivity : AppCompatActivity() {
+
     private val viewModel: RecipeViewModel by viewModels {
         RecipeViewModelFactory((this.application as PanomixApplication).repository)
     }
@@ -21,7 +22,7 @@ class RecipeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recipe)
 
-        val adapter = IngredientsAdapter()
+        val adapter = RecipeAdapter()
 
         val recyclerView = findViewById<RecyclerView>(R.id.recipeRecylcerView)
         recyclerView.layoutManager = LinearLayoutManager(this)

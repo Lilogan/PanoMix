@@ -38,8 +38,8 @@ class RecipelViewModel(private val repository: PanomixRepository) : ViewModel() 
                 val currentCocktailId = cocktail.id
                 if (cocktailId == currentCocktailId)
                 {
-                    val cocktailIngredient = cocktailId?.let { repository.getCocktailIngredient(it).asLiveData().value }
-                    var allIngredientAvailable = true;
+                    val cocktailIngredient = cocktailId?.let { repository.getIngredientsFromCocktail(it).asLiveData().value }
+                    System.out.println("Cocktail Ingredient : " + cocktailIngredient)
                     if (cocktailIngredient != null) {
                         for (ingredient in cocktailIngredient) {
                             ingredientsNeed.add(ingredient)

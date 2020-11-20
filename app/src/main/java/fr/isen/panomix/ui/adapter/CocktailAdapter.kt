@@ -49,8 +49,6 @@ class CocktailAdapter() : BaseRecyclerViewAdapter<Cocktail>() {
         }
 
         override fun onClick(v: View?) {
-            val intent = Intent(itemView.context, RecipeActivity::class.java)
-            itemView.context.startActivity(intent)
         }
     }
 
