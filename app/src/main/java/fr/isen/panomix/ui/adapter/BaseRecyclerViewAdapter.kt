@@ -1,7 +1,9 @@
 package fr.isen.panomix.ui.adapter
 
 import androidx.recyclerview.widget.RecyclerView
+import fr.isen.panomix.data.model.Ingredient
 import fr.isen.panomix.utils.OnItemClickListener
+import kotlinx.coroutines.flow.Flow
 
 abstract class BaseRecyclerViewAdapter<T> : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 

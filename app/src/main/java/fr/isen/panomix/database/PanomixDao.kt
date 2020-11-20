@@ -11,6 +11,13 @@ interface PanomixDao {
     @Query("SELECT * FROM ingredient_table")
     fun getAllIngredients(): Flow<List<Ingredient>>
 
+    //TODO: remove
+    @Query("SELECT * FROM cocktail_table WHERE id == :id")
+    fun getCocktailById(id: Int): Flow<List<Cocktail>>
+
+    @Query("SELECT * FROM ingredient_table WHERE available")
+    fun getAvailableIngredients(): Flow<List<Ingredient>>
+
     @Query("SELECT * FROM cocktail_table")
     fun getAllCocktails(): Flow<List<Cocktail>>
 
@@ -22,6 +29,9 @@ interface PanomixDao {
 
     @Query("SELECT * FROM ingredient_table WHERE name = :name LIMIT 1")
     fun getIngredientByName(name: String): Flow<Ingredient>
+
+    @Query("SELECT * FROM ingredient_table WHERE id = :id LIMIT 1")
+    fun getIngredientById(id: Int): Flow<Ingredient>
 
     @Query("SELECT * FROM map_cocktail_ingredient WHERE id_cocktail == :id")
     fun getCocktailIngredients(id: Int): Flow<List<Ingredient>>
@@ -47,5 +57,10 @@ interface PanomixDao {
     @Query("DELETE FROM map_cocktail_ingredient")
     suspend fun deleteAllIngredientInCocktail()
 
+    @Update
+    suspend fun updateItem(ingredient: Ingredient)
+
+    @Delete
+    suspend fun deleteOneIngredient(ingredient: Ingredient)
 
 }
