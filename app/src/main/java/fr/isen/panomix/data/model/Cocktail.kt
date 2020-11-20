@@ -5,10 +5,11 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "cocktail_table")
 data class Cocktail(
+    var id: Int? = null,
     var name: String?,
     var img: String? = null,
     var instruction: String? = null,
 ){
     @PrimaryKey(autoGenerate = true)
-    var id: Int? = null
+    var element_id: Int? = null
 }

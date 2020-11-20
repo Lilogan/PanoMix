@@ -30,9 +30,9 @@ class RecipeActivity : AppCompatActivity() {
 
         val id = intent.getIntExtra("itemId", 0)
         Log.d("Recipe", id.toString())
-        viewModel.ingredientFromCocktail(id).observe(this, { ingredients ->
-            ingredients.let { adapter.setItems(it) }
-        })
+//        viewModel.ingredientFromCocktail(id).observe(this, { ingredients ->
+//            ingredients.let { adapter.setItems(it) }
+//        })
 
 
     }

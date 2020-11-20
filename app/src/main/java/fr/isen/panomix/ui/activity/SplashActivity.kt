@@ -40,8 +40,7 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        startActivity(Intent(this, MainActivity::class.java))
-        finish()
+        sheduleTest()
 
         val ingredientsList = mutableListOf<String>()
         val ingredientsRequest = service.getIngredients()
@@ -58,13 +57,12 @@ class SplashActivity : AppCompatActivity() {
                         )
                     }
                 }
-                getDrinksListByIngredients(ingredientsList)
 
                 for (element in ingredientsList) {
-                    val currentIngredient = Ingredient(element)
+                    val currentIngredient = Ingredient(ingredientsList.indexOf(element), element)
                     viewModel.addIngredient(currentIngredient)
+                    getDrinksListByIngredients(currentIngredient)
                 }
-
             }
 
             override fun onFailure(call: Call<IngredientsAPI>, t: Throwable) {
@@ -75,44 +73,38 @@ class SplashActivity : AppCompatActivity() {
 
     }
 
-    private fun getDrinksListByIngredients(ingredients: List<String>?){
+    private fun getDrinksListByIngredients(ingredient: Ingredient?) {
 
         val allDrinks = mutableListOf<Int>()
 
         val service = retrofit.create(DrinksByIngredientApiCall::class.java)
 
-        if (ingredients != null) {
-            for (ingredient in ingredients){
-                val drinksListRequest = service.getDrinksByIngredient(ingredient)
-                drinksListRequest.enqueue(object : Callback<DrinksByIngredientAPI> {
-                    override fun onResponse(
-                        call: Call<DrinksByIngredientAPI>,
-                        response: Response<DrinksByIngredientAPI>
-                    ) {
-                        for (x in 0 until response.body()?.drinks?.size!!) {
-                            response.body()?.drinks?.get(x)?.drinkID?.let { allDrinks.add(it) }
-                        }
 
-                        getAllDrinksByGivenID(allDrinks)
-                        allDrinks.clear()
+        val drinksListRequest = ingredient?.name?.let { service.getDrinksByIngredient(it) }
+        drinksListRequest?.enqueue(object : Callback<DrinksByIngredientAPI> {
+            override fun onResponse(
+                call: Call<DrinksByIngredientAPI>,
+                response: Response<DrinksByIngredientAPI>
+            ) {
+                for (x in 0 until response.body()?.drinks?.size!!) {
+                    response.body()?.drinks?.get(x)?.drinkID?.let { allDrinks.add(it) }
+                }
 
-                    }
+                getAllDrinksByGivenID(allDrinks, ingredient)
+                allDrinks.clear()
 
-                    override fun onFailure(call: Call<DrinksByIngredientAPI>, t: Throwable) {
-                        error("Error while calling API")
-                    }
-
-
-                })
             }
-        }
-        else{
-            print("Empty ingredients list...")
-        }
+
+            override fun onFailure(call: Call<DrinksByIngredientAPI>, t: Throwable) {
+                error("Error while calling API")
+            }
+
+
+        })
 
     }
 
-    private fun getAllDrinksByGivenID(idList: MutableList<Int>){
+    private fun getAllDrinksByGivenID(idList: MutableList<Int>, ingredient: Ingredient) {
         val service = retrofit.create(DrinksByIDApiCall::class.java)
 
         val allDrinksByID = mutableListOf<DrinksByIDFromApi>()
@@ -128,87 +120,23 @@ class SplashActivity : AppCompatActivity() {
                         response.body()?.drinks?.get(x)?.let { allDrinksByID.add(it) }
                     }
 
+
                     for (element in allDrinksByID) {
                         val currentCocktail =
-                            Cocktail(element.drinkName, element.img, element.strInstructions)
+                            Cocktail(
+                                element.id?.toInt(),
+                                element.drinkName,
+                                element.img,
+                                element.strInstructions
+                            )
                         viewModel.addCocktail(currentCocktail)
-                    }
-                    for (element in allDrinksByID) {
-                        val cocktailID =
-                            element.drinkName?.let { viewModel.getCocktailByName(it).value }
-                        val ingredient1ID = element.strIngredient1?.let {
-                            viewModel.getIngredientByName(
-                                it
-                            ).value
-                        }
-                        val ingredient2ID = element.strIngredient2?.let {
-                            viewModel.getIngredientByName(
-                                it
-                            ).value
-                        }
-                        val ingredient3ID = element.strIngredient3?.let {
-                            viewModel.getIngredientByName(
-                                it
-                            ).value
-                        }
-                        val ingredient4ID = element.strIngredient4?.let {
-                            viewModel.getIngredientByName(
-                                it
-                            ).value
-                        }
-                        val ingredient5ID = element.strIngredient5?.let {
-                            viewModel.getIngredientByName(
-                                it
-                            ).value
-                        }
+                        if(mutableListOf<String?>(element.strIngredient1, element.strIngredient2, element.strIngredient3, element.strIngredient4, element.strIngredient5).contains(ingredient.name)){
+                            val ingredient1Q = element.strQuantity1
 
-                        val ingredient1Q = element.strQuantity1
-                        val ingredient2Q = element.strQuantity2
-                        val ingredient3Q = element.strQuantity3
-                        val ingredient4Q = element.strQuantity4
-                        val ingredient5Q = element.strQuantity5
-
-                        if (element.strIngredient1 != null) {
                             val linkIngredientCocktail = IngredientInCocktail(
-                                cocktailID?.id,
-                                ingredient1ID?.id,
+                                element.id?.toInt(),
+                                ingredient.id,
                                 ingredient1Q
-                            )
-                            viewModel.addIngredientInCocktail(linkIngredientCocktail)
-                        }
-
-                        if (element.strIngredient2 != null) {
-                            val linkIngredientCocktail = IngredientInCocktail(
-                                cocktailID?.id,
-                                ingredient2ID?.id,
-                                ingredient2Q
-                            )
-                            viewModel.addIngredientInCocktail(linkIngredientCocktail)
-                        }
-
-                        if (element.strIngredient3 != null) {
-                            val linkIngredientCocktail = IngredientInCocktail(
-                                cocktailID?.id,
-                                ingredient3ID?.id,
-                                ingredient3Q
-                            )
-                            viewModel.addIngredientInCocktail(linkIngredientCocktail)
-                        }
-
-                        if (element.strIngredient4 != null) {
-                            val linkIngredientCocktail = IngredientInCocktail(
-                                cocktailID?.id,
-                                ingredient4ID?.id,
-                                ingredient4Q
-                            )
-                            viewModel.addIngredientInCocktail(linkIngredientCocktail)
-                        }
-
-                        if (element.strIngredient5 != null) {
-                            val linkIngredientCocktail = IngredientInCocktail(
-                                cocktailID?.id,
-                                ingredient5ID?.id,
-                                ingredient5Q
                             )
                             viewModel.addIngredientInCocktail(linkIngredientCocktail)
                         }
@@ -225,7 +153,12 @@ class SplashActivity : AppCompatActivity() {
         }
     }
 
-    override fun onStop() {
-        super.onStop()
+    private fun sheduleTest() {
+        val testDuration = 2000L
+        Handler().postDelayed({
+
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }, testDuration)
     }
 }

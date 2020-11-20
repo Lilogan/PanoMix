@@ -25,7 +25,7 @@ class NewIngredientActivity : AppCompatActivity() {
                 setResult(Activity.RESULT_CANCELED, replyIntent)
             } else {
                 val name = editName.text.toString()
-                replyIntent.putExtra("new_ingredient", Ingredient(name))
+                replyIntent.putExtra("new_ingredient", Ingredient(null, name))
                 setResult(Activity.RESULT_OK, replyIntent)
             }
             finish()

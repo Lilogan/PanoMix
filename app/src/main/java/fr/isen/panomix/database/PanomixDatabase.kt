@@ -52,18 +52,9 @@ abstract class PanomixDatabase : RoomDatabase() {
 
 suspend fun populateIngredients(dao: PanomixDao) {
     dao.deleteAllIngredient()
-    dao.addIngredient(Ingredient("Water"))
-    dao.addIngredient(Ingredient("Wine"))
-    dao.addIngredient(Ingredient("Soda"))
-    dao.addIngredient(Ingredient("Vodka"))
-    dao.addIngredient(Ingredient("Rhum"))
 }
 
 suspend fun populateCocktails(dao: PanomixDao) {
     dao.deleteAllCocktails()
-    dao.addCocktail(Cocktail("Margarita", "https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg"))
-    dao.addCocktail(Cocktail("69 Special", "https://www.thecocktaildb.com/images/media/drink/vqyxqx1472669095.jpg"))
-    dao.addCocktail(Cocktail("Adam & Eve", "https://www.thecocktaildb.com/images/media/drink/vfeumw1504819077.jpg"))
-    dao.addCocktail(Cocktail("Alaska Cocktail", "https://www.thecocktaildb.com/images/media/drink/wsyryt1483387720.jpg"))
-    dao.addCocktail(Cocktail("Bijou", "https://www.thecocktaildb.com/images/media/drink/rysb3r1513706985.jpg"))
+
 }

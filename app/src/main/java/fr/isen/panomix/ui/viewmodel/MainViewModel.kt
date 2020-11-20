@@ -16,28 +16,34 @@ class MainViewModel(private val repository: PanomixRepository) : ViewModel() {
 
     fun getPossibleCocktails(): MutableList<Cocktail> {
         val allCocktails = allCocktails.value
-        val allIngredients = availableIngredients.value
+        val allIngredientsAvailableId = mutableListOf<Int>()
+        if(availableIngredients.value != null){
+            for (curIngredient in availableIngredients.value!!){
+                curIngredient.id?.let { allIngredientsAvailableId.add(it) }
+            }
+        }
+
         var possibleCocktails = mutableListOf<Cocktail>();
-//        if (allCocktails != null && allIngredients != null) {
-//            for (cocktail in allCocktails) {
-//                val cocktailId = cocktail.id
-//                val cocktailIngredient =
-//                    cocktailId?.let { repository.getCocktailIngredient(it).asLiveData().value }
-//                var allIngredientAvailable = true;
-//                if (cocktailIngredient != null) {
-//                    for (ingredient in cocktailIngredient) {
-//                        if (!(ingredient in allIngredients)) {
-//                            allIngredientAvailable = false
-//                            break
-//                        }
-//                    }
-//                    if (allIngredientAvailable) {
-//                        possibleCocktails.add(cocktail)
-//                    }
-//                }
-//
-//            }
-//        }
+        if (allCocktails != null) {
+            for (cocktail in allCocktails) {
+                val cocktailId = cocktail.id
+                val cocktailIngredient =
+                    cocktailId?.let { repository.getCocktailIngredient(it).asLiveData().value }
+                var allIngredientAvailable = true;
+                if (cocktailIngredient != null) {
+                    for (ingredient in cocktailIngredient) {
+                        if (!allIngredientsAvailableId.contains(ingredient.id)) {
+                            allIngredientAvailable = false
+                            break
+                        }
+                    }
+                    if (allIngredientAvailable) {
+                        possibleCocktails.add(cocktail)
+                    }
+                }
+
+            }
+        }
         return possibleCocktails
     }
 

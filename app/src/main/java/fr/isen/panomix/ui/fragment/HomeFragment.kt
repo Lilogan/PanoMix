@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import fr.isen.panomix.PanomixApplication
@@ -46,6 +47,8 @@ class HomeFragment : Fragment() {
         recyclerView.addItemDecoration(HeaderViewDecoration(headerView))
 
 
-        adapter.setItems(mainViewModel.getPossibleCocktails())
+        mainViewModel.allCocktails.observe(
+            viewLifecycleOwner,
+            { cocktails -> cocktails.let { adapter.setItems(it) } })
     }
 }

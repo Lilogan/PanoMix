@@ -2,7 +2,10 @@ package fr.isen.panomix.data.model
 
 import com.google.gson.annotations.SerializedName
 
-class DrinksByIDFromApi (
+class DrinksByIDFromApi(
+    @SerializedName("idDrink")
+    val id: String?,
+
     @SerializedName("strDrink")
     val drinkName: String?,
 
@@ -40,7 +43,5 @@ class DrinksByIDFromApi (
     val strQuantity4: String?,
 
     @SerializedName("strMeasure5")
-    val strQuantity5: String?,
-
-
-    )
+    val strQuantity5: String?
+)
