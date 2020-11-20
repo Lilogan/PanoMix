@@ -3,12 +3,17 @@ package fr.isen.panomix.ui.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
+import fr.isen.panomix.data.model.Cocktail
 import fr.isen.panomix.data.model.Ingredient
 import fr.isen.panomix.data.repository.PanomixRepository
 import java.lang.IllegalArgumentException
 
 class RecipelViewModel(private val repository: PanomixRepository) : ViewModel()  {
     //TODO: remove
+    val allIngredients = repository.allIngredients.asLiveData()
+    val allCocktails = repository.allCocktail.asLiveData()
+
+    /*
     fun getCocktailIngredient(id: Int): MutableList<Ingredient> {
         val ingredients = mutableListOf<Ingredient>()
         if (repository.getCocktailIngredient(id).asLiveData().value != null){
@@ -19,9 +24,33 @@ class RecipelViewModel(private val repository: PanomixRepository) : ViewModel() 
                 }
             }
         }
-
         return ingredients
     }
+
+     */
+
+    fun getCocktailIngredient(cocktailId : Int): MutableList<Ingredient> {
+        val allCocktails = allCocktails.value
+        val allIngredients = allIngredients.value
+        var ingredientsNeed = mutableListOf<Ingredient>();
+        if (allCocktails != null && allIngredients != null) {
+            for (cocktail in allCocktails) {
+                val currentCocktailId = cocktail.id
+                if (cocktailId == currentCocktailId)
+                {
+                    val cocktailIngredient = cocktailId?.let { repository.getCocktailIngredient(it).asLiveData().value }
+                    var allIngredientAvailable = true;
+                    if (cocktailIngredient != null) {
+                        for (ingredient in cocktailIngredient) {
+                            ingredientsNeed.add(ingredient)
+                        }
+                    }
+                }
+            }
+        }
+        return ingredientsNeed
+    }
+
 }
 
 

@@ -39,13 +39,6 @@ class MainViewModel(private val repository: PanomixRepository) : ViewModel() {
 //            }
 //        }
         return possibleCocktails
-
-    }
-
-    fun getCocktailIngredients(cocktailId : Int): MutableList<Ingredient>{
-        var cocktailIngredients = mutableListOf<Ingredient>()
-
-        return cocktailIngredients
     }
 
     fun addIngredient(ingredient: Ingredient) = viewModelScope.launch() {

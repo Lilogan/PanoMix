@@ -25,11 +25,11 @@ class ingredientsNeedActivity : AppCompatActivity() {
         val adapter = IngredientsAdapter()
         setContentView(R.layout.activity_ingredients_need)
         ingredientsList.layoutManager = LinearLayoutManager(this)
-        val adapter = IngredientsAdapter()
         ingredientsList.adapter = adapter
         val id = intent.getIntExtra("itemId", 0)
-        System.out.println(id)
-        System.out.println(recipelViewModel)
+        //System.out.println(id)
+        //System.out.println(recipelViewModel)
+        //System.out.println(recipelViewModel.getCocktailIngredient(id))
         adapter.setItems(recipelViewModel.getCocktailIngredient(id))
     }
 
