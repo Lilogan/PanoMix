@@ -41,6 +41,12 @@ class MainViewModel(private val repository: PanomixRepository) : ViewModel() {
 
     }
 
+    fun getCocktailIngredients(cocktailId : Int): MutableList<Ingredient>{
+        var cocktailIngredients = mutableListOf<Ingredient>()
+
+        return cocktailIngredients
+    }
+
     fun addIngredient(ingredient: Ingredient) = viewModelScope.launch() {
         repository.addIngredient(ingredient)
     }

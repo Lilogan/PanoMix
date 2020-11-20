@@ -1,6 +1,7 @@
 package fr.isen.panomix.ui.adapter
 
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -35,6 +36,7 @@ class CocktailAdapter() : BaseRecyclerViewAdapter<Cocktail>() {
         init {
             itemView.setOnClickListener {
                 val intent = Intent(itemView.context,ingredientsNeedActivity::class.java)
+
                 itemView.context.startActivity(intent)
             }
         }
@@ -47,6 +49,7 @@ class CocktailAdapter() : BaseRecyclerViewAdapter<Cocktail>() {
                 .centerCrop()
                 .into(viewHolder.itemImg)
         }
+
 
 
         override fun onClick(v: View?) {
