@@ -2,6 +2,7 @@ package fr.isen.panomix.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -19,12 +20,20 @@ class RecipeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recipe)
+
+        val adapter = IngredientsAdapter()
+
         val recyclerView = findViewById<RecyclerView>(R.id.recipeRecylcerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        val adapter = IngredientsAdapter()
         recyclerView.adapter = adapter
+
         val id = intent.getIntExtra("itemId", 0)
-        adapter.setItems(viewModel.getCocktailIngredient(id))
+        Log.d("Recipe", id.toString())
+        viewModel.ingredientFromCocktail(id).observe(this, { ingredients ->
+            ingredients.let { adapter.setItems(it) }
+        })
+
+
     }
 
 }

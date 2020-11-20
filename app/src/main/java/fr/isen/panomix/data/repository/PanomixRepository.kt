@@ -25,6 +25,10 @@ class PanomixRepository(private val panomixDao: PanomixDao) {
         return panomixDao.getCocktailById(id)
     }
 
+    fun getCocktailsFromIngredient(id: Int): Flow<List<Cocktail>> {
+        return panomixDao.getCocktailsFromIngredientsId(id)
+    }
+
     fun getIngredientByName(name: String): Flow<Ingredient> {
         return panomixDao.getIngredientByName(name)
     }
@@ -32,6 +36,11 @@ class PanomixRepository(private val panomixDao: PanomixDao) {
     fun getIngredientById(id: Int): Flow<Ingredient> {
         return panomixDao.getIngredientById(id)
     }
+
+    fun getIngredientsFromCocktail(id: Int): Flow<List<Ingredient>> {
+        return panomixDao.getIngredientsFromCocktailId(id)
+    }
+
 
     fun getCocktailIngredient(id: Int): Flow<List<IngredientInCocktail>> {
         return panomixDao.getIngredientInCocktail(id)

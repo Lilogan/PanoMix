@@ -6,6 +6,7 @@ import androidx.lifecycle.asLiveData
 import fr.isen.panomix.data.model.Ingredient
 import fr.isen.panomix.data.repository.PanomixRepository
 import java.lang.IllegalArgumentException
+import java.util.concurrent.Flow
 
 class RecipeViewModel(private val repository: PanomixRepository) : ViewModel() {
     fun getCocktailIngredient(id: Int): MutableList<Ingredient> {
@@ -23,6 +24,7 @@ class RecipeViewModel(private val repository: PanomixRepository) : ViewModel() {
         return ingredients
     }
 
+    fun ingredientFromCocktail(id: Int) = repository.getIngredientsFromCocktail(id).asLiveData()
 
 }
 
